@@ -4,25 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b211273a-7dbd-458a-a892-c9a900ac20c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Human_Life_Simulator.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bens/AcessorioModa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bens/Imovel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bens/Propriedade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bens/Veiculo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Enums/Objetivo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OutrasClasses/Profissao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OutrasClasses/Shopping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OutrasClasses/Sims.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Personagens/Jogador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Personagens/NPC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Personagens/Pessoa.java" afterDir="false" />
+    <list default="true" id="b211273a-7dbd-458a-a892-c9a900ac20c7" name="Changes" comment="First commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OutrasClasses/Shopping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/Shopping.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,11 +64,25 @@
       <option name="presentableId" value="Default" />
       <updated>1713539583416</updated>
       <workItem from="1713539584671" duration="17853000" />
-      <workItem from="1713629365209" duration="25629000" />
+      <workItem from="1713629365209" duration="26021000" />
+      <workItem from="1713700657655" duration="1991000" />
     </task>
+    <task id="LOCAL-00001" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1713662536247</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713662536247</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
 </project>

@@ -29,6 +29,10 @@ public class Shopping {
 
     }
 
+    public void removerPropriedadesDeCoisasParaComprar(int indexPropriedade){
+        coisasParaComprar.remove(indexPropriedade);
+    }
+
 
     public void vender(Pessoa pessoa) {
         Collections.shuffle(this.coisasParaComprar);
@@ -50,7 +54,7 @@ public class Shopping {
                     ArrayList<Propriedade> imoveis = new ArrayList<>();
                     for (Propriedade imovelAtual : coisasParaComprar) {
                         if (imovelAtual instanceof Imovel && imoveis.size() < 3) {
-                            imoveis.add(imovelAtual);
+                            imoveis.add(imovelAtual); //adiciona aos bens da pessoa
                         }
                     }
                     imprimirImoveis(imoveis);
@@ -60,9 +64,10 @@ public class Shopping {
 
                     if (pessoa instanceof Jogador) {
                         ((Jogador) pessoa).adquiriuPropriedade(imoveis.get(idImovel));
-
                     }
 
+                    //remover de coisasPraComprar ------------- rever esta logica
+                    removerPropriedadesDeCoisasParaComprar(idImovel);
 
                     break;
 
