@@ -110,14 +110,10 @@ public class Sims {
         jogador.mostrarDetalhes();
         return jogador;
 
-
     }
 
 
-
-
     public void jogo(int dias) {
-
 
         //Instancias de imovel
         Imovel imovel1 = new Imovel("Casa", 200000.0, 1, 4);
@@ -219,7 +215,10 @@ public class Sims {
         NPC npc5 = new NPC("Samuel", 10000000, 5);
         NPC npc6 = new NPC("Mariana", 6000000, 2);
         NPC npc7 = new NPC("Jéssica", 7000000, 2);
-
+        NPC npc8 = new NPC("Anderson", 800000, 2);
+        NPC npc9 = new NPC("Walter", 7000000, 5);
+        NPC npc10 = new NPC("Lena", 9000000, 3);
+        NPC npc11 = new NPC("Fernando", 700000, 4);
 
 
         // Ciclo corre uma vez para cada dia 🌞🌚
@@ -244,18 +243,22 @@ public class Sims {
                         break;
 
                 }
-                momentoDia(criarPessoa());
+                momentoDia((Jogador) criarPessoa());
+                //resetar sono diminui 25 pontos, a necessidade refeição diminui 20
+                //pontos e a necessidade social diminui 15 pontos
+
             }
         }
 
     }
 
-    public void momentoDia(Pessoa pessoa) {
+    public void momentoDia(Jogador pessoa) {
         Scanner input = new Scanner(System.in);
 
 
         System.out.println("O que pretende fazer ");
-        int acontecimento = input.nextInt(); ;
+        int acontecimento = input.nextInt();
+
 
         switch (acontecimento) {
             case 1:
@@ -287,59 +290,77 @@ public class Sims {
     }
 
     //aumenta dinheiro do jogador com base no salário/dia da sua profissão
-    public void trabalhar(Pessoa pessoa) {
-        //verficar se é um jogador
-        if (pessoa instanceof Jogador) {
-            //ver a profissao do jogador
-            if (((Jogador) pessoa).getProfissaoAtual() != null) {
-                //extrair variavel do dinheiro do jogador
-               double dinheiro = pessoa.getDinheiro();
+    public void trabalhar(Jogador pessoa) {
 
-                //extrair o nome da profissao
-                Profissao profissao = ((Jogador) pessoa).getProfissaoAtual();
+        double dinheiro = pessoa.getDinheiro();
 
-                double salarioDia = profissao.getSalarioDia();
+        //extrair o nome da profissao
+        Profissao profissao = pessoa.getProfissaoAtual();
+
+        CentroEmprego centroEmprego = null;
+        if (profissao == null) {
+            // Mandar ao centro de emprego
+            // Invocar metodo do centro de emprego
+           centroEmprego.imprimirListaDeProfissoes();
+
+        } else {
+            double salarioDia = profissao.getSalarioDia();
 
             //aumenta dinheiro
-               dinheiro += salarioDia;
-            }
+            pessoa.setDinheiro(pessoa.getDinheiro() + salarioDia);
         }
     }
 
 
     //repõe a necessidade de sono de volta a 100.
-    public void dormir(Pessoa pessoa){
-
-
+    public int dormir(Jogador pessoa) {
+        int sono = pessoa.getNecessidadeSono();
+        //repor a 100
+        sono = 100;
+        return sono;
     }
 
     // repõe a necessidade de refeição de volta a 100 e diminui 5 dinheiros
-    public void fazerRefeicao(){
+    public void fazerRefeicao(Jogador pessoa) {
 
+        // Remove ao dinheiro, o custo da refeição
+        pessoa.setDinheiro(pessoa.getDinheiro() - 5);
+
+        int necessRefeicao  = pessoa.getNecessidadeSono();
+            //repor a 100
+            necessRefeicao = 100;
     }
 
-   // Treinar repõe a necessidade social de volta a 100.
-    public void treinar(){
-
+    // Treinar repõe a necessidade social de volta a 100.
+    public void treinar(Jogador pessoa) {
+        int necesSocial = pessoa.getNecessidadeSocial();
+        necesSocial = 100;
     }
 
 
     //ir as compras
-    public void fazerCompras(){
+    public void fazerCompras(Jogador pessoa) {
+        Shopping shopping = new Shopping();
+        shopping.vender(pessoa);
 
     }
-    public void terFormacao(){
 
+    public void terFormacao(Jogador pessoa) {
+        //se tiver emprego aumenta educaçao em 2
+        Profissao profissao = pessoa.getProfissaoAtual();
+        if(profissao != null){
+
+        }
     }
 
-    public void visitarPropriedades(Pessoa pessoa){
+    public static void visitarPropriedades(Pessoa pessoa) {
         if (pessoa instanceof Jogador) {
             //listar propriedades do jogador
             ((Jogador) pessoa).exibirPropriedadesJogador();
         }
     }
 
-    public void procuraProfissao(){
+    public void procuraProfissao() {
 
     }
 

@@ -19,6 +19,10 @@ public class Shopping {
         this.coisasParaComprar = coisasParaComprar;
     }
 
+    public Shopping() {
+
+    }
+
 
     public void imprimirImoveis(ArrayList<Propriedade> coisasParaComprar) {
         for (int i = 0; i < coisasParaComprar.size(); i++) {

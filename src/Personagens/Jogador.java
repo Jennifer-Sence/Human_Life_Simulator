@@ -46,10 +46,25 @@ public class Jogador extends Pessoa {
     }
 
 
+    public int getNecessidadeSono() {
+        return necessidadeSono;
+    }
 
+    public int getNecessidadeRefeicao() {
+        return necessidadeRefeicao;
+    }
+
+    public int getNecessidadeSocial() {
+        return necessidadeSocial;
+    }
 
     public Profissao getProfissaoAtual() {
         return profissaoAtual;
+    }
+
+
+    public void setEducacao(int educacao) {
+        this.educacao = educacao;
     }
 
     /**

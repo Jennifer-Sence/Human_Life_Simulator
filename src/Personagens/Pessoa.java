@@ -25,6 +25,10 @@ public abstract class Pessoa {
         return dinheiro;
     }
 
+    public void setDinheiro(double dinheiro) {
+        this.dinheiro = dinheiro;
+    }
+
     /**
      * Método para exibir os detalhes de uma pessoa
      *Nome da pessoa e dinheiro

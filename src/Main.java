@@ -15,8 +15,8 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println();
-        Sims.criarPessoa();
-
+       Pessoa p1 = Sims.criarPessoa();
+        Sims.visitarPropriedades(p1);
 
 
         Profissao engenheiro = new Profissao("Engenheiro/a",10000, false, 10, 6);
