@@ -27,6 +27,10 @@ public class Profissao {
         return nome;
     }
 
+    public double getSalarioDia() {
+        return salarioDia;
+    }
+
     public void exibirDetalhesProfissao(){
        System.out.println("🔠Nome: " + this.nome);
        System.out.println("💵☀️Salario por dia: " + this.salarioDia);

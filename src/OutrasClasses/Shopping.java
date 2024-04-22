@@ -57,6 +57,7 @@ public class Shopping {
                     ArrayList<Propriedade> imoveisMontra = new ArrayList<>();
 
                     for (Propriedade propriedadeAtual : coisasParaComprar) {
+                        //alterar 3 para 10 posteriormente
                         if (propriedadeAtual instanceof Imovel && imoveisMontra.size() < 3) {
                             imoveisMontra.add(propriedadeAtual);
                         }

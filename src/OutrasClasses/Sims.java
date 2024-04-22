@@ -60,42 +60,42 @@ public class Sims {
         int opcao = input.nextInt();
 
 
-        switch (opcao){
+        switch (opcao) {
             case 1:
-                objetivoVida=Objetivo.MILIONARIO;
+                objetivoVida = Objetivo.MILIONARIO;
                 break;
             case 2:
-                objetivoVida=Objetivo.FAMILIA_COMPLETA;
+                objetivoVida = Objetivo.FAMILIA_COMPLETA;
                 break;
             case 3:
-                objetivoVida=Objetivo.CELEBRIDADE;
+                objetivoVida = Objetivo.CELEBRIDADE;
                 break;
             case 4:
-                objetivoVida=Objetivo.PROFESSOR;
+                objetivoVida = Objetivo.PROFESSOR;
                 break;
             case 5:
-                objetivoVida=Objetivo.MEDICO;
+                objetivoVida = Objetivo.MEDICO;
                 break;
             case 6:
-                objetivoVida=Objetivo.VIAJAR_O_MUNDO;
+                objetivoVida = Objetivo.VIAJAR_O_MUNDO;
                 break;
             case 7:
-                objetivoVida=Objetivo.ENGENHEIRO;
+                objetivoVida = Objetivo.ENGENHEIRO;
                 break;
             case 8:
-                objetivoVida=Objetivo.PROGRAMADOR;
+                objetivoVida = Objetivo.PROGRAMADOR;
                 break;
             case 9:
-                objetivoVida=Objetivo.ARQUITETO;
+                objetivoVida = Objetivo.ARQUITETO;
                 break;
             case 10:
-                objetivoVida=Objetivo.VETERINARIO;
+                objetivoVida = Objetivo.VETERINARIO;
                 break;
             case 11:
-                objetivoVida=Objetivo.JOGADOR;
+                objetivoVida = Objetivo.JOGADOR;
                 break;
             case 12:
-                objetivoVida=Objetivo.CANTOR;
+                objetivoVida = Objetivo.CANTOR;
                 break;
             default:
                 System.out.println("Escolha uma opção válida!");
@@ -209,7 +209,7 @@ public class Sims {
 
         // Ciclo corre uma vez para cada dia 🌞🌚
         for (int diaAtual = 1; diaAtual <= dias; diaAtual++) {
-            for (int momentoDia = 0; momentoDia < 3; momentoDia++) {
+            for (int momentoDia = 0; momentoDia < 4; momentoDia++) {
                 //4 momentos (manhã, meio-dia, tarde, noite)
                 switch (momentoDia) {
                     case 0: // Manhã
@@ -229,19 +229,20 @@ public class Sims {
                         break;
 
                 }
-                momentoDia();
+                momentoDia(criarPessoa());
             }
         }
 
     }
 
-    public void momentoDia() {
+    public void momentoDia(Pessoa pessoa) {
         //Um acontecimento random é executado
         int acontecimento = new Random().nextInt(1, 8);
 
         switch (acontecimento) {
             case 1:
                 System.out.println("----------🧑🏽‍💼👩🏽‍🏭👷🏽‍♀️ Ir trabalhar 👷🏽‍♀️👩🏽‍🏭🧑🏽‍💼️----------");
+                trabalhar(pessoa);
                 break;
             case 2:
                 System.out.println("----------💤🛌🏽💤 Dormir 💤🛌🏽💤----------");
@@ -264,6 +265,26 @@ public class Sims {
             case 8:
                 System.out.println("----------🧑🏽‍⚕️🧑🏽‍🍳👷🏽 Procurar nova profissão 👷🏽🧑🏽‍🍳🧑🏽‍⚕️----------");
                 break;
+        }
+    }
+
+    //aumenta dinheiro do jogador com base no salário/dia da sua profissão
+    public void trabalhar(Pessoa pessoa) {
+        //verficar se é um jogador
+        if (pessoa instanceof Jogador) {
+            //ver a profissao do jogador
+            if (((Jogador) pessoa).getProfissaoAtual() != null) {
+                //extrair variavel do dinheiro do jogador
+               double dinheiro = pessoa.getDinheiro();
+
+                //extrair o nome da profissao
+                Profissao profissao = ((Jogador) pessoa).getProfissaoAtual();
+
+                double salarioDia = profissao.getSalarioDia();
+
+            //aumenta dinheiro
+               dinheiro += salarioDia;
+            }
         }
     }
 
