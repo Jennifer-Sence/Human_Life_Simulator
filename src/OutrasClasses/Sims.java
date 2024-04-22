@@ -6,6 +6,7 @@ import Bens.Propriedade;
 import Bens.Veiculo;
 import Enums.Objetivo;
 import Personagens.Jogador;
+import Personagens.NPC;
 import Personagens.Pessoa;
 
 import java.sql.SQLOutput;
@@ -15,11 +16,12 @@ import java.util.Scanner;
 
 public class Sims {
 
+
     /**
      * Método construtor de feedback da consola
      */
 
-    public Pessoa criarPessoa() {
+    public static Pessoa criarPessoa() {
         Scanner input = new Scanner(System.in);
 
         //Variaveis
@@ -38,11 +40,12 @@ public class Sims {
         Objetivo objetivoVida = null;
 
         //Nome
-        System.out.print("🔤Nome: ");
+        System.out.println("🔤Introduza o sue nome: ");
         nome = input.nextLine();
 
 
         //Objetivo
+        System.out.println();
         System.out.println("Qual o seu objetivo de vida? ");
         System.out.println("1. Milionário 💰");
         System.out.println("2. Familia Completa 👪");
@@ -101,10 +104,16 @@ public class Sims {
                 System.out.println("Escolha uma opção válida!");
         }
 
+        //
 
         Pessoa jogador = new Jogador(nome, dinheiro, objetivoVida, profissao, necessidadeSono, necessidadeRefeicao, necessidadeSocial, estatuto, educacao);
+        jogador.mostrarDetalhes();
         return jogador;
+
+
     }
+
+
 
 
     public void jogo(int dias) {
@@ -201,15 +210,21 @@ public class Sims {
         Profissao profissao19 = new Profissao("Carpinteiro", 170.0, false, 1, 2);
         Profissao profissao20 = new Profissao("Pedreiro", 200.0, false, 1, 2);
 
-        //Instancia jogador
 
+        //Instancias de  NPC
+        NPC npc1 = new NPC("Maria", 1000000, 2);
+        NPC npc2 = new NPC("João", 2000000, 4);
+        NPC npc3 = new NPC("Ana", 100000, 2);
+        NPC npc4 = new NPC("Joana", 1000000, 3);
+        NPC npc5 = new NPC("Samuel", 10000000, 5);
+        NPC npc6 = new NPC("Mariana", 6000000, 2);
+        NPC npc7 = new NPC("Jéssica", 7000000, 2);
 
-        //Instancia NPC
 
 
         // Ciclo corre uma vez para cada dia 🌞🌚
         for (int diaAtual = 1; diaAtual <= dias; diaAtual++) {
-            for (int momentoDia = 0; momentoDia < 4; momentoDia++) {
+            for (int momentoDia = 0; momentoDia <= 3; momentoDia++) {
                 //4 momentos (manhã, meio-dia, tarde, noite)
                 switch (momentoDia) {
                     case 0: // Manhã
@@ -236,8 +251,11 @@ public class Sims {
     }
 
     public void momentoDia(Pessoa pessoa) {
-        //Um acontecimento random é executado
-        int acontecimento = new Random().nextInt(1, 8);
+        Scanner input = new Scanner(System.in);
+
+
+        System.out.println("O que pretende fazer ");
+        int acontecimento = input.nextInt(); ;
 
         switch (acontecimento) {
             case 1:
@@ -287,6 +305,44 @@ public class Sims {
             }
         }
     }
+
+
+    //repõe a necessidade de sono de volta a 100.
+    public void dormir(Pessoa pessoa){
+
+
+    }
+
+    // repõe a necessidade de refeição de volta a 100 e diminui 5 dinheiros
+    public void fazerRefeicao(){
+
+    }
+
+   // Treinar repõe a necessidade social de volta a 100.
+    public void treinar(){
+
+    }
+
+
+    //ir as compras
+    public void fazerCompras(){
+
+    }
+    public void terFormacao(){
+
+    }
+
+    public void visitarPropriedades(Pessoa pessoa){
+        if (pessoa instanceof Jogador) {
+            //listar propriedades do jogador
+            ((Jogador) pessoa).exibirPropriedadesJogador();
+        }
+    }
+
+    public void procuraProfissao(){
+
+    }
+
 
 }
 

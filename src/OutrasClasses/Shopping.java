@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.Scanner;
 
 public class Shopping {
-    Scanner scanner = new Scanner(System.in);
+
     private ArrayList<Propriedade> coisasParaComprar;
 
     public Shopping(ArrayList<Propriedade> coisasParaComprar) {
@@ -34,8 +34,8 @@ public class Shopping {
     }
 
 
-    public void vender(Pessoa pessoa) {
-
+    public  void vender(Pessoa pessoa) {
+        Scanner scanner = new Scanner(System.in);
         //embaralhar o array
         Collections.shuffle(this.coisasParaComprar);
 

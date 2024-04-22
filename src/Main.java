@@ -5,6 +5,7 @@ import Enums.Objetivo;
 import OutrasClasses.Profissao;
 import OutrasClasses.Shopping;
 import Bens.Imovel;
+import OutrasClasses.Sims;
 import Personagens.Jogador;
 import Personagens.Pessoa;
 
@@ -13,8 +14,12 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        Profissao engenheiro = new Profissao("Engenheiro/a",10000, false, 10, 6);
+        System.out.println();
+        Sims.criarPessoa();
 
+
+
+        Profissao engenheiro = new Profissao("Engenheiro/a",10000, false, 10, 6);
 
         Pessoa jogador1 = new Jogador("Jenny", 100000, Objetivo.MILIONARIO, engenheiro, 6, 6, 6, 3, 6);
 
@@ -72,6 +77,8 @@ public class Main {
 
         System.out.println();
         shopping1.vender(jogador1);
+
+
 
 
     }

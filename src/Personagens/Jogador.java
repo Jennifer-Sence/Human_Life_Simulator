@@ -13,7 +13,7 @@ public class Jogador extends Pessoa {
     private int necessidadeSono;
     private int necessidadeRefeicao;
     private int necessidadeSocial;
-    private int estatuto;
+    private int estatuto; //estatuto
     private int educacao;
     private ArrayList<Propriedade> propriedades; //Todas as propriedades
     private ArrayList<NPC> familia;             //Familia do jogador
