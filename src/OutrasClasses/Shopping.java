@@ -35,7 +35,12 @@ public class Shopping {
 
 
     public void vender(Pessoa pessoa) {
+
+
+
+        //embaralhar o array
         Collections.shuffle(this.coisasParaComprar);
+
         int opcao;
         do {
             System.out.println();
@@ -50,68 +55,95 @@ public class Shopping {
 
             switch (opcao) {
                 case 1:
+                    // Gerar a montra
+                    ArrayList<Propriedade> imoveisMontra = new ArrayList<>();
 
-                    ArrayList<Propriedade> imoveis = new ArrayList<>();
-                    for (Propriedade imovelAtual : coisasParaComprar) {
-                        if (imovelAtual instanceof Imovel && imoveis.size() < 3) {
-                            imoveis.add(imovelAtual); //adiciona aos bens da pessoa
+                    for (Propriedade propriedadeAtual : coisasParaComprar) {
+                        if (propriedadeAtual instanceof Imovel && imoveisMontra.size() < 3) {
+                            imoveisMontra.add(propriedadeAtual);
                         }
                     }
-                    imprimirImoveis(imoveis);
+
+                    // Imprime a montra
+                    imprimirImoveis(imoveisMontra);
 
                     System.out.println("🏡Qual imóvel deseja adiquir? ");
                     int idImovel = scanner.nextInt();
 
+                    Propriedade imovelComprado= imoveisMontra.get(idImovel);
+
                     if (pessoa instanceof Jogador) {
-                        ((Jogador) pessoa).adquiriuPropriedade(imoveis.get(idImovel));
+                       if(((Jogador) pessoa).adquiriuPropriedade(imovelComprado)){
+                           // Só fazer as duas seguintes linhas, se efetivamente tiver comprado
+                           imoveisMontra.remove(imovelComprado);
+                           this.coisasParaComprar.remove(imovelComprado);
+                       }
                     }
 
-                    //remover de coisasPraComprar ------------- rever esta logica
-                    removerPropriedadesDeCoisasParaComprar(idImovel);
 
                     break;
 
 
                 case 2:
 
-                    ArrayList<Propriedade> veiculos = new ArrayList<>();
-                    for (Propriedade veiculoAtual : coisasParaComprar) {
-                        if (veiculoAtual instanceof Veiculo && veiculos.size() < 3) {
-                            veiculos.add(veiculoAtual);
+                    // Gerar a montra de veiculos
+                    ArrayList<Propriedade> veiculosMontra = new ArrayList<>();
+
+                    for (Propriedade propriedadeAtual : coisasParaComprar) {
+                        if (propriedadeAtual instanceof Veiculo && veiculosMontra.size() < 3) {
+                            veiculosMontra.add(propriedadeAtual);
                         }
                     }
-                    imprimirImoveis(veiculos);
 
-                    System.out.println("🚗Qual veículo deseja adiquir? ");
+                    // Imprime a montra de veiculos
+                    imprimirImoveis(veiculosMontra);
+
+                    System.out.println("🚗Qual veiculo deseja adiquir? ");
                     int idVeiculo = scanner.nextInt();
 
+                    Propriedade veiculoComprado= veiculosMontra.get(idVeiculo);
+
                     if (pessoa instanceof Jogador) {
-                        ((Jogador) pessoa).adquiriuPropriedade(veiculos.get(idVeiculo));
+                        if(((Jogador) pessoa).adquiriuPropriedade(veiculoComprado)){
+                            // Só fazer as duas seguintes linhas, se efetivamente tiver comprado
+                            veiculosMontra.remove(veiculoComprado);
+                            this.coisasParaComprar.remove(veiculoComprado);
+                        }
                     }
 
                     break;
 
 
                 case 3:
-                    ArrayList<Propriedade> acModa = new ArrayList<>();
-                    for (Propriedade acAtual : coisasParaComprar) {
-                        if (acAtual instanceof AcessorioModa && acModa.size() < 3) {
-                            acModa.add((AcessorioModa) acAtual);
+
+                    // Gerar a montra de roupa
+                    ArrayList<Propriedade> modaMontra = new ArrayList<>();
+
+                    for (Propriedade propriedadeAtual : coisasParaComprar) {
+                        if (propriedadeAtual instanceof AcessorioModa && modaMontra.size() < 3) {
+                            modaMontra.add(propriedadeAtual); // a roupa a montra se for do tipo acessorio de moda
                         }
                     }
-                    imprimirImoveis(acModa);
 
-                    System.out.println("👝👠💍👘👓Qual acessorio deseja adiquir? ");
-                    int idacModa = scanner.nextInt();
+                    // Imprime a montra de roupa
+                    imprimirImoveis(modaMontra);
+
+                    System.out.println("👗Qual acessório deseja adiquir? ");
+                    int idModa = scanner.nextInt();
+
+                    Propriedade acessorioComprado= modaMontra.get(idModa);
 
                     if (pessoa instanceof Jogador) {
-                        ((Jogador) pessoa).adquiriuPropriedade(acModa.get(idacModa));
+                        if(((Jogador) pessoa).adquiriuPropriedade(acessorioComprado)){
+                            // Só fazer as duas seguintes linhas, se efetivamente tiver comprado
+                            modaMontra.remove(acessorioComprado);
+                            this.coisasParaComprar.remove(acessorioComprado);
+                        }
                     }
-
                     break;
 
                 case 4:
-                    System.out.println("Sair");
+                    System.out.println("Obrigada volte sempre! ");
 
             }
 

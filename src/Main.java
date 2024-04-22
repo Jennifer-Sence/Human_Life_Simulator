@@ -73,6 +73,6 @@ public class Main {
         System.out.println();
         shopping1.vender(jogador1);
 
-jogador1.mostrarDetalhes();
+
     }
 }
