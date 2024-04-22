@@ -4,9 +4,11 @@ import Bens.AcessorioModa;
 import Bens.Imovel;
 import Bens.Propriedade;
 import Bens.Veiculo;
+import Enums.Objetivo;
 import Personagens.Jogador;
 import Personagens.Pessoa;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,31 +19,96 @@ public class Sims {
      * Método construtor de feedback da consola
      */
 
-    //O atributo dinheiro começa 0, a profissão começa a nula,
-    // as necessidades começam a 100 (limite máximo),
-    // o estatuto começa a 0, e
-    //educação começa a 0 e as propriedades também vazias.
-    public void criarPessoa() {
+    public Pessoa criarPessoa() {
         Scanner input = new Scanner(System.in);
 
         //Variaveis
+
         String nome;
         double dinheiro = 0;
         Profissao profissao = null;
-        int necessidadeSono, necessidadeRefeicao, necessidadeSocial = 100;
-        int estatuto, educacao = 0;
+        int necessidadeSono = 100;
+        int necessidadeRefeicao = 100;
+        int necessidadeSocial = 100;
+        int estatuto = 0;
+        int educacao = 0;
         ArrayList<Propriedade> propriedades = new ArrayList<>();
+
+        //Objetivo de vida
+        Objetivo objetivoVida = null;
 
         //Nome
         System.out.print("🔤Nome: ");
         nome = input.nextLine();
 
-     //   Pessoa jogador = new Jogador(nome, dinheiro);
-     //   return jogador;
+
+        //Objetivo
+        System.out.println("Qual o seu objetivo de vida? ");
+        System.out.println("1. Milionário 💰");
+        System.out.println("2. Familia Completa 👪");
+        System.out.println("3. Celebridade ");
+        System.out.println("4. Professor 👨‍🏫");
+        System.out.println("5. Médico ");
+        System.out.println("6. Viajar o mundo 🌍🛬");
+        System.out.println("7. Engenheiro ");
+        System.out.println("8. Programador 💻");
+        System.out.println("9. Arquiteto ");
+        System.out.println("10. Veterinário");
+        System.out.println("11. Jogador ⚽");
+        System.out.println("12. Cantor");
+
+        int opcao = input.nextInt();
+
+
+        switch (opcao){
+            case 1:
+                objetivoVida=Objetivo.MILIONARIO;
+                break;
+            case 2:
+                objetivoVida=Objetivo.FAMILIA_COMPLETA;
+                break;
+            case 3:
+                objetivoVida=Objetivo.CELEBRIDADE;
+                break;
+            case 4:
+                objetivoVida=Objetivo.PROFESSOR;
+                break;
+            case 5:
+                objetivoVida=Objetivo.MEDICO;
+                break;
+            case 6:
+                objetivoVida=Objetivo.VIAJAR_O_MUNDO;
+                break;
+            case 7:
+                objetivoVida=Objetivo.ENGENHEIRO;
+                break;
+            case 8:
+                objetivoVida=Objetivo.PROGRAMADOR;
+                break;
+            case 9:
+                objetivoVida=Objetivo.ARQUITETO;
+                break;
+            case 10:
+                objetivoVida=Objetivo.VETERINARIO;
+                break;
+            case 11:
+                objetivoVida=Objetivo.JOGADOR;
+                break;
+            case 12:
+                objetivoVida=Objetivo.CANTOR;
+                break;
+            default:
+                System.out.println("Escolha uma opção válida!");
+        }
+
+
+        Pessoa jogador = new Jogador(nome, dinheiro, objetivoVida, profissao, necessidadeSono, necessidadeRefeicao, necessidadeSocial, estatuto, educacao);
+        return jogador;
     }
 
 
     public void jogo(int dias) {
+
 
         //Instancias de imovel
         Imovel imovel1 = new Imovel("Casa", 200000.0, 1, 4);

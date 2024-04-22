@@ -45,6 +45,9 @@ public class Jogador extends Pessoa {
         this.familia = new ArrayList<>();
     }
 
+
+
+
     public Profissao getProfissaoAtual() {
         return profissaoAtual;
     }

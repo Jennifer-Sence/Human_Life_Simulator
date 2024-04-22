@@ -36,8 +36,6 @@ public class Shopping {
 
     public void vender(Pessoa pessoa) {
 
-
-
         //embaralhar o array
         Collections.shuffle(this.coisasParaComprar);
 
