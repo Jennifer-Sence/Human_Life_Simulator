@@ -30,7 +30,9 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-      imprimirFicheiro("src/Files/sims4.txt");
+      //imprimirFicheiro("src/Files/sims4.txt");
+    // imprimirFicheiro("src/Files/win.txt");
+   //  imprimirFicheiro("src/Files/lose.txt");
         System.out.println();
        Pessoa p1 = Sims.criarPessoa();
         Sims.visitarPropriedades(p1);
