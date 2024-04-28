@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b211273a-7dbd-458a-a892-c9a900ac20c7" name="Changes" comment="Momentos">
+      <change afterPath="$PROJECT_DIR$/src/Files/audio.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OutrasClasses/Audio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Personagens/Casamento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bens/AcessorioModa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bens/AcessorioModa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bens/Imovel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bens/Imovel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bens/Propriedade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bens/Propriedade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bens/Veiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bens/Veiculo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enums/Objetivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enums/Objetivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OutrasClasses/CentroEmprego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/CentroEmprego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OutrasClasses/Profissao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/Profissao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OutrasClasses/Shopping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/Shopping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OutrasClasses/Sims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/Sims.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Personagens/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personagens/Jogador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Personagens/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personagens/NPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +65,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.Jogo.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -70,8 +86,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="Jogo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Jogo" />
+      <module name="Human_Life_Simulator" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Jogo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Jogo" />
       <module name="Human_Life_Simulator" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -79,7 +102,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Jogo" />
+        <item itemvalue="Application.Jogo" />
       </list>
     </recent_temporary>
   </component>
@@ -102,7 +126,15 @@
       <workItem from="1713629365209" duration="26021000" />
       <workItem from="1713700657655" duration="1991000" />
       <workItem from="1713809850717" duration="632000" />
-      <workItem from="1713892541773" duration="633000" />
+      <workItem from="1713892541773" duration="1028000" />
+      <workItem from="1713945938205" duration="22628000" />
+      <workItem from="1713974254842" duration="915000" />
+      <workItem from="1713980198399" duration="113000" />
+      <workItem from="1713980434865" duration="9391000" />
+      <workItem from="1714056991395" duration="17573000" />
+      <workItem from="1714132038454" duration="19010000" />
+      <workItem from="1714224440582" duration="19929000" />
+      <workItem from="1714307982086" duration="1796000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />

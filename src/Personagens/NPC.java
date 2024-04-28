@@ -14,6 +14,17 @@ public class NPC extends Pessoa{
         this.estatutoMinimo = estatutoMinimo;
     }
 
+    //getters-------------------------
+
+
+    public void setEstatutoMinimo(int estatutoMinimo) {
+        this.estatutoMinimo = estatutoMinimo;
+    }
+
+    public int getEstatutoMinimo() {
+        return estatutoMinimo;
+    }
+
     @Override
     public void mostrarDetalhes() {
         super.mostrarDetalhes();

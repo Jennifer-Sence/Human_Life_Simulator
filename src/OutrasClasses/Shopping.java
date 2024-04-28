@@ -19,12 +19,7 @@ public class Shopping {
         this.coisasParaComprar = coisasParaComprar;
     }
 
-    public Shopping() {
-
-    }
-
-
-    public void imprimirImoveis(ArrayList<Propriedade> coisasParaComprar) {
+      public void imprimirImoveis(ArrayList<Propriedade> coisasParaComprar) {
         for (int i = 0; i < coisasParaComprar.size(); i++) {
             System.out.println("🆔 Id: " + i);
             coisasParaComprar.get(i).exibirDetalhesPropriedade();
@@ -39,12 +34,15 @@ public class Shopping {
 
 
     public  void vender(Pessoa pessoa) {
+
+
         Scanner scanner = new Scanner(System.in);
         //embaralhar o array
         Collections.shuffle(this.coisasParaComprar);
 
         int opcao;
         do {
+            System.out.println("⚠️⚠️⚠️ Dinheiro atual: " + pessoa.getDinheiro() + " 💵💵");
             System.out.println();
             System.out.println("🛒🛍️ Qual a secção deseja aceder?\n");
             System.out.println("1- Imobiliario 🏠");
@@ -61,8 +59,7 @@ public class Shopping {
                     ArrayList<Propriedade> imoveisMontra = new ArrayList<>();
 
                     for (Propriedade propriedadeAtual : coisasParaComprar) {
-                        //alterar 3 para 10 posteriormente
-                        if (propriedadeAtual instanceof Imovel && imoveisMontra.size() < 3) {
+                        if (propriedadeAtual instanceof Imovel && imoveisMontra.size() < 10) {
                             imoveisMontra.add(propriedadeAtual);
                         }
                     }
@@ -93,7 +90,7 @@ public class Shopping {
                     ArrayList<Propriedade> veiculosMontra = new ArrayList<>();
 
                     for (Propriedade propriedadeAtual : coisasParaComprar) {
-                        if (propriedadeAtual instanceof Veiculo && veiculosMontra.size() < 3) {
+                        if (propriedadeAtual instanceof Veiculo && veiculosMontra.size() < 10) {
                             veiculosMontra.add(propriedadeAtual);
                         }
                     }
@@ -123,7 +120,7 @@ public class Shopping {
                     ArrayList<Propriedade> modaMontra = new ArrayList<>();
 
                     for (Propriedade propriedadeAtual : coisasParaComprar) {
-                        if (propriedadeAtual instanceof AcessorioModa && modaMontra.size() < 3) {
+                        if (propriedadeAtual instanceof AcessorioModa && modaMontra.size() < 10) {
                             modaMontra.add(propriedadeAtual); // a roupa a montra se for do tipo acessorio de moda
                         }
                     }
@@ -146,7 +143,8 @@ public class Shopping {
                     break;
 
                 case 4:
-                    System.out.println("Obrigada volte sempre! ");
+                    System.out.println("🥰🥰🥰Obrigada volte sempre! ");
+                    System.out.println();
 
             }
 

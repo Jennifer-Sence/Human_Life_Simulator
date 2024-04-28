@@ -5,7 +5,7 @@ public class AcessorioModa extends Propriedade{
     private boolean formal;
 
     /**
-     *
+     * Método construto da classe AcessorioModa
      * @param nome
      * @param custo
      * @param estatuto
@@ -18,6 +18,11 @@ public class AcessorioModa extends Propriedade{
         this.formal = formal;
     }
 
+    /**
+     * Método para exibir informações
+     * dos acessorios de moda
+     */
+
     @Override
     public void exibirDetalhesPropriedade() {
         super.exibirDetalhesPropriedade();
@@ -27,5 +32,17 @@ public class AcessorioModa extends Propriedade{
         }else{
             System.out.println("Não formal 👙");
         }
+    }
+
+    /**
+     * Método para verificar se o acessorio é ou não formal
+     * @return
+     */
+
+    public boolean acessorioFomal(){
+        if(this.formal){
+            return true;
+        }
+        return false;
     }
 }

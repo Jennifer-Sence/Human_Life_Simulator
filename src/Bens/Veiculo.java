@@ -19,6 +19,9 @@ public class Veiculo extends Propriedade {
         this.modelo = modelo;
     }
 
+    /**
+     * Método para detalhes dos veículos
+     */
     @Override
     public void exibirDetalhesPropriedade() {
         super.exibirDetalhesPropriedade();

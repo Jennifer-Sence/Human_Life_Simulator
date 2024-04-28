@@ -7,6 +7,7 @@ public abstract class Propriedade {
 
     /**
      * Método construtor da classe "Propriedade"
+     *
      * @param nome
      * @param custo
      * @param estatuto
@@ -17,19 +18,40 @@ public abstract class Propriedade {
         this.estatuto = estatuto;
     }
 
+    /**
+     * Metodo get para o nome da propriedade
+     * @return nome da propriedade
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Metodo get para o estatuto da propriedade
+     * @return nome da propriedade
+     */
+    public int getEstatuto() {
+        return estatuto;
+    }
+
+    /**
+     * Metodo get para o custo da propriedade
+     * @return custo da prorpiedade
+     */
     public double getCusto() {
         return custo;
     }
 
-    public void exibirDetalhesPropriedade(){
-        System.out.println("🔡 Nome: "+this.nome );
-        System.out.println("🤑 Custo: "+this.custo);
-        System.out.println("🏡 Estatuto: "+this.estatuto);
+    /**
+     * Método para detalhes das propriedades
+     */
+    public void exibirDetalhesPropriedade() {
+        System.out.println("🔡 Nome: " + this.nome);
+        System.out.println("🤑 Custo: " + this.custo);
+        System.out.println("🏡 Estatuto: " + this.estatuto);
     }
+
+
 
 
 }

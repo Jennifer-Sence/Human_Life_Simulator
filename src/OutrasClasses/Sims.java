@@ -6,10 +6,11 @@ import Bens.Propriedade;
 import Bens.Veiculo;
 import Enums.Objetivo;
 import Personagens.Jogador;
+import Personagens.Casamento;
 import Personagens.NPC;
-import Personagens.Pessoa;
 
-import java.sql.SQLOutput;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,11 +18,26 @@ import java.util.Scanner;
 public class Sims {
 
 
+    public Sims() {
+    }
+
+    public static void imprimirFicheiro(String path) throws FileNotFoundException {
+        // Instanciar um Scanner para o Ficheiro que foi passado por parâmetro
+        Scanner leitorFicheiro = new Scanner(new File(path));
+        //percorrer o ficheiro, guardar as linhas do ficheiro na variável linha
+        while (leitorFicheiro.hasNextLine()) {
+            String linha = leitorFicheiro.nextLine();
+            //imprimir todas as linhas do ficheiro
+            System.out.println(linha);
+        }
+    }
+
+
     /**
      * Método construtor de feedback da consola
      */
 
-    public static Pessoa criarPessoa() {
+    public static Jogador criarPessoa() {
         Scanner input = new Scanner(System.in);
 
         //Variaveis
@@ -40,25 +56,23 @@ public class Sims {
         Objetivo objetivoVida = null;
 
         //Nome
-        System.out.println("🔤Introduza o sue nome: ");
+
+        System.out.println("🔤Introduza o nome do seu jogador🤾🏽‍♀️: ");
         nome = input.nextLine();
 
 
         //Objetivo
         System.out.println();
-        System.out.println("Qual o seu objetivo de vida? ");
+        System.out.println("Qual o seu objetivo de vida? 🧬 ");
         System.out.println("1. Milionário 💰");
         System.out.println("2. Familia Completa 👪");
-        System.out.println("3. Celebridade ");
+        System.out.println("3. Celebridade 👩🏽‍🎤");
         System.out.println("4. Professor 👨‍🏫");
-        System.out.println("5. Médico ");
+        System.out.println("5. Médico 🧑🏽‍⚕️");
         System.out.println("6. Viajar o mundo 🌍🛬");
-        System.out.println("7. Engenheiro ");
-        System.out.println("8. Programador 💻");
-        System.out.println("9. Arquiteto ");
-        System.out.println("10. Veterinário");
-        System.out.println("11. Jogador ⚽");
-        System.out.println("12. Cantor");
+        System.out.println("7. Programador 💻");
+        System.out.println("8. Jogador ⚽ ");
+        System.out.println("9. Cantor 🧑🏽‍🎤");
 
         int opcao = input.nextInt();
 
@@ -83,81 +97,79 @@ public class Sims {
                 objetivoVida = Objetivo.VIAJAR_O_MUNDO;
                 break;
             case 7:
-                objetivoVida = Objetivo.ENGENHEIRO;
-                break;
-            case 8:
                 objetivoVida = Objetivo.PROGRAMADOR;
                 break;
-            case 9:
-                objetivoVida = Objetivo.ARQUITETO;
-                break;
-            case 10:
-                objetivoVida = Objetivo.VETERINARIO;
-                break;
-            case 11:
+            case 8:
                 objetivoVida = Objetivo.JOGADOR;
                 break;
-            case 12:
+            case 9:
                 objetivoVida = Objetivo.CANTOR;
                 break;
             default:
-                System.out.println("Escolha uma opção válida!");
+                System.out.println("Objetivo de vida não especificado!");
+                break;
         }
 
-        //
+        Jogador jogador = new Jogador(nome, dinheiro, objetivoVida, profissao, necessidadeSono, necessidadeRefeicao, necessidadeSocial, estatuto, educacao);
+        System.out.println();
+        System.out.println("🥳🥳Jogador criado com sucesso! ");
+        System.out.println("🔡Nome: " + nome);
+        System.out.println("🧬Objetivo de vida: " + objetivoVida);
+        System.out.println();
 
-        Pessoa jogador = new Jogador(nome, dinheiro, objetivoVida, profissao, necessidadeSono, necessidadeRefeicao, necessidadeSocial, estatuto, educacao);
-        jogador.mostrarDetalhes();
+
         return jogador;
+
 
     }
 
 
-    public void jogo(int dias) {
+    public void jogo(int dias, Jogador jogadorAnterior) throws FileNotFoundException {
 
         //Instancias de imovel
-        Imovel imovel1 = new Imovel("Casa", 200000.0, 1, 4);
-        Imovel imovel2 = new Imovel("Apartamento", 150000.0, 2, 2);
-        Imovel imovel3 = new Imovel("Chalé", 300000.0, 1, 6);
-        Imovel imovel4 = new Imovel("Sobrado", 250000.0, 2, 5);
-        Imovel imovel5 = new Imovel("Kitnet", 80000.0, 1, 1);
-        Imovel imovel6 = new Imovel("Cobertura", 500000.0, 3, 8);
-        Imovel imovel7 = new Imovel("Fazenda", 1000000.0, 4, 20);
-        Imovel imovel8 = new Imovel("Pousada", 400000.0, 3, 15);
-        Imovel imovel9 = new Imovel("Mansão", 1500000.0, 5, 10);
-        Imovel imovel10 = new Imovel("Casa de Praia", 300000.0, 3, 8);
-        Imovel imovel11 = new Imovel("Apartamento de Luxo", 500000.0, 4, 4);
-        Imovel imovel12 = new Imovel("Casa de Campo", 350000.0, 3, 12);
-        Imovel imovel13 = new Imovel("Casa de Condomínio", 400000.0, 3, 6);
-        Imovel imovel14 = new Imovel("Chácara", 600000.0, 4, 10);
-        Imovel imovel15 = new Imovel("Flat", 200000.0, 2, 3);
-        Imovel imovel16 = new Imovel("Loft", 180000.0, 2, 2);
-        Imovel imovel17 = new Imovel("Casarão", 800000.0, 4, 15);
-        Imovel imovel18 = new Imovel("Apartamento Estúdio", 100000.0, 1, 1);
-        Imovel imovel19 = new Imovel("Hotel", 2000000.0, 5, 30);
-        Imovel imovel20 = new Imovel("Pensão", 120000.0, 1, 10);
-
+        Imovel imovel1 = new Imovel("Casa", 8000.0, 1, 4);
+        Imovel imovel2 = new Imovel("Apartamento", 15000.0, 2, 2);
+        Imovel imovel3 = new Imovel("Chalé", 30000.0, 1, 6);
+        Imovel imovel4 = new Imovel("Sobrado", 23000.0, 2, 5);
+        Imovel imovel5 = new Imovel("Kitnet", 8000.0, 1, 1);
+        Imovel imovel6 = new Imovel("Cobertura", 50000.0, 3, 7);
+        Imovel imovel7 = new Imovel("Fazenda", 100000.0, 4, 12);
+        Imovel imovel8 = new Imovel("Pousada", 40000.0, 3, 12);
+        Imovel imovel9 = new Imovel("Mansão", 150000.0, 5, 15);
+        Imovel imovel10 = new Imovel("Casa de Praia", 30000.0, 3, 8);
+        Imovel imovel11 = new Imovel("Apartamento de Luxo", 50000.0, 4, 4);
+        Imovel imovel12 = new Imovel("Casa de Campo", 35000.0, 3, 12);
+        Imovel imovel13 = new Imovel("Casa de Condomínio", 40000.0, 3, 6);
+        Imovel imovel14 = new Imovel("Chácara", 60000.0, 4, 8);
+        Imovel imovel15 = new Imovel("Flat", 20000.0, 2, 3);
+        Imovel imovel16 = new Imovel("Loft", 18000.0, 2, 2);
+        Imovel imovel17 = new Imovel("Casarão", 80000.0, 4, 12);
+        Imovel imovel18 = new Imovel("Apartamento Estúdio", 10000.0, 1, 1);
+        Imovel imovel19 = new Imovel("Hotel", 200000.0, 8, 20);
+        Imovel imovel20 = new Imovel("Pensão", 120000.0, 6, 10);
+        Imovel imovel21 = new Imovel("Casa2", 9000.0, 2, 3);
+        Imovel imovel22 = new Imovel("Casa3", 9000.0, 3, 4);
 
         //Instancias de veiculo
-        Veiculo veiculo1 = new Veiculo("Carro", 30000.0, 1, "Toyota", "Corolla");
-        Veiculo veiculo2 = new Veiculo("Moto", 10000.0, 2, "Honda", "CBR");
-        Veiculo veiculo3 = new Veiculo("Caminhão", 80000.0, 3, "Volvo", "FH");
-        Veiculo veiculo4 = new Veiculo("Van", 50000.0, 1, "Mercedes-Benz", "Sprinter");
-        Veiculo veiculo5 = new Veiculo("Ônibus", 150000.0, 3, "Scania", "K360");
-        Veiculo veiculo6 = new Veiculo("Barco", 500000.0, 5, "Yamaha", "LX210");
-        Veiculo veiculo7 = new Veiculo("Avião", 1000000.0, 5, "Boeing", "747");
-        Veiculo veiculo8 = new Veiculo("Helicóptero", 800000.0, 4, "Airbus", "H125");
-        Veiculo veiculo9 = new Veiculo("Caminhonete", 40000.0, 2, "Ford", "Ranger");
-        Veiculo veiculo10 = new Veiculo("Trator", 60000.0, 3, "John Deere", "6120J");
-        Veiculo veiculo11 = new Veiculo("Carro Elétrico", 45000.0, 2, "Tesla", "Model 3");
-        Veiculo veiculo12 = new Veiculo("Motocicleta Elétrica", 15000.0, 1, "Zero", "SR/F");
-        Veiculo veiculo13 = new Veiculo("Jipe", 35000.0, 2, "Jeep", "Wrangler");
-        Veiculo veiculo14 = new Veiculo("Caminhão Tanque", 120000.0, 4, "Iveco", "Stralis");
-        Veiculo veiculo15 = new Veiculo("Van Escolar", 55000.0, 2, "Renault", "Master");
-        Veiculo veiculo16 = new Veiculo("Trem", 200000.0, 4, "Alstom", "TGV");
-        Veiculo veiculo17 = new Veiculo("Navio de Carga", 800000.0, 5, "Maersk", "Triple E");
-        Veiculo veiculo18 = new Veiculo("Avião de Carga", 2000000.0, 5, "Antonov", "An-124");
-        Veiculo veiculo19 = new Veiculo("Bicicleta", 1000.0, 1, "Caloi", "Elite Carbon");
+        Veiculo veiculo1 = new Veiculo("Carro", 3000.0, 1, "Toyota", "Corolla");
+        Veiculo veiculo2 = new Veiculo("Moto", 1000.0, 2, "Honda", "CBR");
+        Veiculo veiculo3 = new Veiculo("Caminhão", 8000.0, 3, "Volvo", "FH");
+        Veiculo veiculo4 = new Veiculo("Van", 5000.0, 1, "Mercedes-Benz", "Sprinter");
+        Veiculo veiculo5 = new Veiculo("Ônibus", 15000.0, 3, "Scania", "K360");
+        Veiculo veiculo6 = new Veiculo("Barco", 50000.0, 5, "Yamaha", "LX210");
+        Veiculo veiculo7 = new Veiculo("Avião", 100000.0, 5, "Boeing", "747");
+        Veiculo veiculo8 = new Veiculo("Helicóptero", 80000.0, 4, "Airbus", "H125");
+        Veiculo veiculo9 = new Veiculo("Caminhonete", 4000.0, 2, "Ford", "Ranger");
+        Veiculo veiculo10 = new Veiculo("Trator", 6000.0, 3, "John Deere", "6120J");
+        Veiculo veiculo11 = new Veiculo("Carro Elétrico", 4500.0, 2, "Tesla", "Model 3");
+        Veiculo veiculo12 = new Veiculo("Motocicleta Elétrica", 1500.0, 1, "Zero", "SR/F");
+        Veiculo veiculo13 = new Veiculo("Jipe", 3500.0, 2, "Jeep", "Wrangler");
+        Veiculo veiculo14 = new Veiculo("Caminhão Tanque", 12000.0, 4, "Iveco", "Stralis");
+        Veiculo veiculo15 = new Veiculo("Van Escolar", 5500.0, 2, "Renault", "Master");
+        Veiculo veiculo16 = new Veiculo("Trem", 20000.0, 4, "Alstom", "TGV");
+        Veiculo veiculo17 = new Veiculo("Navio de Carga", 80000.0, 5, "Maersk", "Triple E");
+        Veiculo veiculo18 = new Veiculo("Avião de Carga", 200000.0, 5, "Antonov", "An-124");
+        Veiculo veiculo19 = new Veiculo("Bicicleta", 900.0, 1, "Caloi", "Elite Carbon");
         Veiculo veiculo20 = new Veiculo("Patinete Elétrico", 500.0, 1, "Xiaomi", "Mi Electric Scooter");
 
 
@@ -195,7 +207,7 @@ public class Sims {
         Profissao profissao8 = new Profissao("Designer", 170.0, true, 2, 2);
         Profissao profissao9 = new Profissao("Enfermeiro", 190.0, true, 1, 3);
         Profissao profissao10 = new Profissao("Piloto", 400.0, true, 3, 5);
-        Profissao profissao11 = new Profissao("Ator", 120.0, false, 1, 1);
+        Profissao profissao11 = new Profissao("Cantor", 120.0, false, 1, 1);
         Profissao profissao12 = new Profissao("Atleta", 300.0, false, 3, 2);
         Profissao profissao13 = new Profissao("Chef", 220.0, false, 2, 3);
         Profissao profissao14 = new Profissao("Cientista", 250.0, true, 3, 5);
@@ -208,165 +220,902 @@ public class Sims {
 
 
         //Instancias de  NPC
-        NPC npc1 = new NPC("Maria", 1000000, 2);
-        NPC npc2 = new NPC("João", 2000000, 4);
-        NPC npc3 = new NPC("Ana", 100000, 2);
-        NPC npc4 = new NPC("Joana", 1000000, 3);
-        NPC npc5 = new NPC("Samuel", 10000000, 5);
-        NPC npc6 = new NPC("Mariana", 6000000, 2);
-        NPC npc7 = new NPC("Jéssica", 7000000, 2);
-        NPC npc8 = new NPC("Anderson", 800000, 2);
-        NPC npc9 = new NPC("Walter", 7000000, 5);
-        NPC npc10 = new NPC("Lena", 9000000, 3);
-        NPC npc11 = new NPC("Fernando", 700000, 4);
+        NPC npc1 = new NPC("Maria", 1000000, 100);
+        NPC npc2 = new NPC("João", 200000, 40);
+        NPC npc3 = new NPC("Ana", 100000, 20);
+        NPC npc4 = new NPC("Joana", 1000000, 35);
+        NPC npc5 = new NPC("Samuel", 10000000, 150);
+        NPC npc6 = new NPC("Mariana", 600000, 20);
+        NPC npc7 = new NPC("Jéssica", 7000000, 30);
+        NPC npc8 = new NPC("Anderson", 800000, 25);
+        NPC npc9 = new NPC("Walter", 7000000, 200);
+        NPC npc10 = new NPC("Lena", 90000, 10);
+        NPC npc11 = new NPC("Fernando", 7000, 4);
+        NPC npc12 = new NPC("Jonathan", 0, 0);
+        NPC npc13 = new NPC("Jessie", 0, 0);
+        NPC npc14 = new NPC("Ariel", 0, 0);
+        NPC npc15 = new NPC("Melanie", 0, 0);
+        NPC npc16 = new NPC("Ândrea", 0, 0);
+        NPC npc17 = new NPC("Amanda", 0, 0);
+        NPC npc18 = new NPC("André", 0, 0);
+        NPC npc19 = new NPC("Sónia", 0, 0);
+        NPC npc20 = new NPC("Inês", 0, 0);
+        NPC npc21 = new NPC("Samy", 0, 0);
+        NPC npc22 = new NPC("Stephanie", 0, 0);
+        NPC npc23 = new NPC("Emily", 0, 0);
+        NPC npc24 = new NPC("Jacob", 0, 0);
+        NPC npc25 = new NPC("Olivia", 0, 0);
+        NPC npc26 = new NPC("Michael", 0, 0);
+        NPC npc27 = new NPC("Emma", 0, 0);
+        NPC npc28 = new NPC("William", 0, 0);
+        NPC npc29 = new NPC("Sophia", 0, 0);
+        NPC npc30 = new NPC("Ethan", 0, 0);
+        NPC npc31 = new NPC("Ava", 100, 1);
+        NPC npc32 = new NPC("James", 200, 2);
+        NPC npc33 = new NPC("Isabella", 300, 3);
+        NPC npc34 = new NPC("Liam", 400, 4);
+        NPC npc35 = new NPC("Charlotte", 500, 5);
+        NPC npc36 = new NPC("Benjamin", 660, 6);
+        NPC npc37 = new NPC("Amelia", 700, 7);
+        NPC npc38 = new NPC("Lucas", 800, 8);
+        NPC npc39 = new NPC("Harper", 900, 9);
+        NPC npc40 = new NPC("Mason", 1000, 10);
+
+
+        Casamento casamento = new Casamento();
+        casamento.addNpc(npc1);
+        casamento.addNpc(npc2);
+        casamento.addNpc(npc3);
+        casamento.addNpc(npc4);
+        casamento.addNpc(npc5);
+        casamento.addNpc(npc6);
+        casamento.addNpc(npc7);
+        casamento.addNpc(npc8);
+        casamento.addNpc(npc9);
+        casamento.addNpc(npc10);
+        casamento.addNpc(npc11);
+        casamento.addNpc(npc12);
+        casamento.addNpc(npc13);
+        casamento.addNpc(npc14);
+        casamento.addNpc(npc15);
+        casamento.addNpc(npc16);
+        casamento.addNpc(npc17);
+        casamento.addNpc(npc18);
+        casamento.addNpc(npc19);
+        casamento.addNpc(npc20);
+        casamento.addNpc(npc21);
+        casamento.addNpc(npc22);
+        casamento.addNpc(npc23);
+        casamento.addNpc(npc24);
+        casamento.addNpc(npc25);
+        casamento.addNpc(npc26);
+        casamento.addNpc(npc27);
+        casamento.addNpc(npc28);
+        casamento.addNpc(npc29);
+        casamento.addNpc(npc30);
+        casamento.addNpc(npc31);
+        casamento.addNpc(npc32);
+        casamento.addNpc(npc33);
+        casamento.addNpc(npc34);
+        casamento.addNpc(npc35);
+        casamento.addNpc(npc36);
+        casamento.addNpc(npc37);
+        casamento.addNpc(npc38);
+        casamento.addNpc(npc39);
+        casamento.addNpc(npc40);
+
+
+        ArrayList<Propriedade> propriedade1 = new ArrayList<>();
+
+
+        propriedade1.add(imovel1);
+        propriedade1.add(imovel2);
+        propriedade1.add(imovel3);
+        propriedade1.add(imovel4);
+        propriedade1.add(imovel5);
+        propriedade1.add(imovel6);
+        propriedade1.add(imovel7);
+        propriedade1.add(imovel8);
+        propriedade1.add(imovel9);
+        propriedade1.add(imovel10);
+        propriedade1.add(imovel11);
+        propriedade1.add(imovel12);
+        propriedade1.add(imovel13);
+        propriedade1.add(imovel14);
+        propriedade1.add(imovel15);
+        propriedade1.add(imovel16);
+        propriedade1.add(imovel17);
+        propriedade1.add(imovel18);
+        propriedade1.add(imovel19);
+        propriedade1.add(imovel20);
+        propriedade1.add(imovel21);
+        propriedade1.add(imovel22);
+
+        propriedade1.add(veiculo1);
+        propriedade1.add(veiculo2);
+        propriedade1.add(veiculo3);
+        propriedade1.add(veiculo4);
+        propriedade1.add(veiculo5);
+        propriedade1.add(veiculo6);
+        propriedade1.add(veiculo7);
+        propriedade1.add(veiculo8);
+        propriedade1.add(veiculo9);
+        propriedade1.add(veiculo10);
+        propriedade1.add(veiculo11);
+        propriedade1.add(veiculo12);
+        propriedade1.add(veiculo13);
+        propriedade1.add(veiculo14);
+        propriedade1.add(veiculo15);
+        propriedade1.add(veiculo16);
+        propriedade1.add(veiculo17);
+        propriedade1.add(veiculo18);
+        propriedade1.add(veiculo19);
+        propriedade1.add(veiculo20);
+
+        propriedade1.add(acessorio1);
+        propriedade1.add(acessorio2);
+        propriedade1.add(acessorio3);
+        propriedade1.add(acessorio4);
+        propriedade1.add(acessorio5);
+        propriedade1.add(acessorio6);
+        propriedade1.add(acessorio7);
+        propriedade1.add(acessorio8);
+        propriedade1.add(acessorio9);
+        propriedade1.add(acessorio10);
+        propriedade1.add(acessorio11);
+        propriedade1.add(acessorio12);
+        propriedade1.add(acessorio13);
+        propriedade1.add(acessorio14);
+        propriedade1.add(acessorio15);
+        propriedade1.add(acessorio16);
+        propriedade1.add(acessorio17);
+        propriedade1.add(acessorio18);
+        propriedade1.add(acessorio19);
+        propriedade1.add(acessorio20);
+
+        Jogador jogador;
+        Shopping shopping1 = new Shopping(propriedade1);
+        if (jogadorAnterior == null) {
+            jogador = Sims.criarPessoa();
+        } else {
+            jogador = jogadorAnterior;
+        }
+
+        ArrayList<Profissao> profissoes = new ArrayList<>();
+        profissoes.add(profissao1);
+        profissoes.add(profissao2);
+        profissoes.add(profissao3);
+        profissoes.add(profissao4);
+        profissoes.add(profissao5);
+        profissoes.add(profissao6);
+        profissoes.add(profissao7);
+        profissoes.add(profissao8);
+        profissoes.add(profissao9);
+        profissoes.add(profissao10);
+        profissoes.add(profissao11);
+        profissoes.add(profissao12);
+        profissoes.add(profissao13);
+        profissoes.add(profissao14);
+        profissoes.add(profissao15);
+        profissoes.add(profissao16);
+        profissoes.add(profissao17);
+        profissoes.add(profissao18);
+        profissoes.add(profissao19);
+        profissoes.add(profissao20);
+
+
+        CentroEmprego centroEmprego = new CentroEmprego(profissoes);
 
 
         // Ciclo corre uma vez para cada dia 🌞🌚
         for (int diaAtual = 1; diaAtual <= dias; diaAtual++) {
+            System.out.println();
+            System.out.println("🌞Dia: " + diaAtual);
+            System.out.println();
+
+            if (diaAtual == 5) {
+                universidade(jogador);
+            }
+            if (diaAtual == 20 || diaAtual == 40 || diaAtual == 80) {
+                jogarEuroDinheiro(jogador);
+            }
+            if (diaAtual == 22) {
+                casar(jogador, casamento);
+            }
+            if (diaAtual > 22 && jogador.getFamilia().size() > 0) {
+                jogador.setDinheiro(jogador.getDinheiro() + 30);
+            }
+            if (diaAtual > 22 && jogador.getFamilia().size() > 0 && diaAtual <= 60) {
+                terFilho(jogador, casamento);
+            }
+            if (diaAtual == 70) {
+                viajar(jogador);
+            }
+
+            if (diaAtual == 6 || diaAtual == 22) {
+                sairAnoite(jogador);
+            }
+            if (diaAtual == 10 || diaAtual == 21) {
+                partTimeFimDeSemana(jogador);
+            }
+            if (diaAtual == 19 || diaAtual == 63) {
+                irCinema(jogador);
+            }
+            if (diaAtual == 24 || diaAtual == 33 || diaAtual == 40 || diaAtual == 44 || diaAtual == 50 || diaAtual == 60 || diaAtual == 70 || diaAtual == 78 || diaAtual == 81 || diaAtual == 88) {
+                jantarFora(jogador);
+            }
+            if (diaAtual == 99) {
+                aprenderJava(jogador);
+            }
+
+
+            //pagar 10 dinheiros por familiar
+            jogador.pagarPorFamiliar();
+            //retira todos os filhos se tiver divida maior que 3250
+            retirarFilhos(jogador);
+
+            //resetar necessidades
+            necessidadesFimCiclo(jogador);
+
+
             for (int momentoDia = 0; momentoDia <= 3; momentoDia++) {
+
                 //4 momentos (manhã, meio-dia, tarde, noite)
                 switch (momentoDia) {
                     case 0: // Manhã
-                        System.out.println("\n\n--------🌄🌄🌄🌄🌄🌄🌄 Manhã 🌄🌄🌄🌄🌄🌄🌄--------");
+                        System.out.println();
+                        System.out.println("\t\t\t--------🌄🌄🌄🌄🌄🌄🌄 Manhã 🌄🌄🌄🌄🌄🌄🌄--------");
                         break;
 
                     case 1: // Meio dia
-                        System.out.println("\n\n--------🌞🌞🌞🌞🌞🌞🌞 Meio-dia 🌞🌞🌞🌞🌞🌞🌞--------");
+                        System.out.println();
+                        System.out.println("\t\t\t--------🌞🌞🌞🌞🌞🌞🌞 Meio-dia 🌞🌞🌞🌞🌞🌞🌞--------");
                         break;
 
                     case 2: // Tarde
-                        System.out.println("\n\n--------🌅🌅🌅🌅🌅🌅🌅 Tarde 🌅🌅🌅🌅🌅🌅 --------");
+                        System.out.println();
+                        System.out.println("\t\t\t--------🌅🌅🌅🌅🌅🌅🌅 Tarde 🌅🌅🌅🌅🌅🌅 --------");
                         break;
 
                     case 3: // Noite
-                        System.out.println("\n\n--------🌚🌚🌚🌚🌚🌚🌚 Noite 🌚🌚🌚🌚🌚🌚🌚--------");
+                        System.out.println();
+                        System.out.println("\t\t\t--------🌚🌚🌚🌚🌚🌚🌚 Noite 🌚🌚🌚🌚🌚🌚🌚--------");
                         break;
 
                 }
-                momentoDia((Jogador) criarPessoa());
-                //resetar sono diminui 25 pontos, a necessidade refeição diminui 20
-                //pontos e a necessidade social diminui 15 pontos
+                momentoDia(jogador, centroEmprego, shopping1);
 
+            }
+        }
+        Scanner input = new Scanner(System.in);
+        if (atingiuObjetivos(jogador)) {
+            System.out.println("🥳🥳🥳Parabéns atingiu todo o seu objetivo de vida e ganhou o jogo!");
+            imprimirFicheiro("src/Files/win.txt");
+
+            //encerrar o programa
+            System.exit(0);
+        } else {
+            imprimirFicheiro("src/Files/lose.txt");
+
+            System.out.println("Quer continuar com o jogador? S/N ");
+            String resposta = input.next();
+            if (resposta.equalsIgnoreCase("S")) {
+                jogador.resetar();
+                this.jogo(100, jogador);
+            } else {
+                this.jogo(100, null);
             }
         }
 
     }
 
-    public void momentoDia(Jogador pessoa) {
+    public void momentoDia(Jogador pessoa, CentroEmprego centroEmprego, Shopping shopping) {
         Scanner input = new Scanner(System.in);
 
+        //verifica niveis minimos de necessidades
+        if (pessoa.getNecessidadeRefeicao() < 25) {
+            System.out.println();
+            System.out.println("⚠️⚠️⚠️⚠️Atenção níveis de necessidades de refeição abaixo de 25!");
+            System.out.println("Não esqueça de comer! Seu corpo e mente agradecem. 😊🍽️");
+            System.out.println("Vamos comer? S/N");
+            String resposta;
+            do {
+                resposta = input.next();
+                if (!resposta.equalsIgnoreCase("S")) {
+                    System.out.println("Não pode fazer outra atividade que não seja fazer uma refeição para repor os seus niveis de energia!");
+                    System.out.println("Vamos comer? S/N");
+                    System.out.println();
+                }
+            } while (!resposta.equalsIgnoreCase("S"));
+            fazerRefeicao(pessoa);
+        }
 
-        System.out.println("O que pretende fazer ");
+        //necessidade de sono
+        if (pessoa.getNecessidadeSono() < 25) {
+            System.out.println();
+            System.out.println("⚠️⚠️⚠️⚠️Atenção níveis de necessidades de sono abaixo de 25!");
+            System.out.println("💤🛌🏽 Vamos descansar um pouco para repor as energias? S/N");
+            String resposta2;
+            do {
+                resposta2 = input.next();
+                if (!resposta2.equalsIgnoreCase("S")) {
+                    System.out.println("Não pode fazer outra atividade que não seja fazer dormir um pouquinho!");
+                    System.out.println("Vamos descansar? S/N");
+                    System.out.println();
+                }
+            } while (!resposta2.equalsIgnoreCase("S"));
+            dormir(pessoa);
+        }
+
+        //necessidade de social
+
+        if (pessoa.getNecessidadeSocial() < 25) {
+            System.out.println();
+            System.out.println("⚠️⚠️⚠️⚠️Atenção níveis de necessidades social abaixo de 25!");
+            System.out.println("Vamos repor as necessidades sociais, que tal fazer um treinozinho? S/N");
+            String resposta3;
+            do {
+                resposta3 = input.next();
+                if (!resposta3.equalsIgnoreCase("S")) {
+                    System.out.println("Não pode fazer outra atividade que não seja fazer um treinizinho para fazer as necessidades sociais!");
+                    System.out.println("Vamos treinar? S/N");
+                    System.out.println();
+                }
+            } while (!resposta3.equalsIgnoreCase("S"));
+            treinar(pessoa);
+        }
+
+        //.......................................................
+
+        System.out.println(" ");
+        System.out.println("\t\t\t\t\t🤔⁉️Escolha uma atividade para agora: ");
+        System.out.println(" ");
+        System.out.println("\t1.----------🧑🏽‍💼👩🏽‍🏭👷🏽‍♀️ Ir trabalhar 👷🏽‍♀️👩🏽‍🏭🧑🏽‍💼️------------------------------------");
+        System.out.println("\t2.----------💤🛌🏽💤 Dormir 💤🛌🏽💤------------------------------------------");
+        System.out.println("\t3.----------🥝🥞🚰🥕🥐🚰🥓🌮 Ter uma refeição 🥝🥞🚰🥕🥐🚰🥓🌮----------");
+        System.out.println("\t4.----------🤾🏽‍♂️🤸🏽‍♀️🤼‍♀️🥷🏽️️ Treinar 🤾🏽‍♂️🤸🏽‍♀️🤼‍♀️🥷🏽------------------------------------");
+        System.out.println("\t5.----------🛒🛍️💅🏽 Ir às compras 🛒🛍️💅🏽-----------------------------------");
+        System.out.println("\t6.-----------🏫🎒📓 Ter formação 🏫🎒📓-----------------------------------");
+        System.out.println("\t7.----------🏠🚗👔 Visitar as propriedades 🏠🚗👔-------------------------");
+        System.out.println("\t8.----------🧑🏽‍⚕️🧑🏽‍🍳👷🏽 Procurar nova profissão 👷🏽🧑🏽‍🍳🧑🏽‍⚕️-------------------------");
+
+
         int acontecimento = input.nextInt();
 
 
         switch (acontecimento) {
             case 1:
-                System.out.println("----------🧑🏽‍💼👩🏽‍🏭👷🏽‍♀️ Ir trabalhar 👷🏽‍♀️👩🏽‍🏭🧑🏽‍💼️----------");
-                trabalhar(pessoa);
+                trabalhar(pessoa, centroEmprego);
                 break;
             case 2:
-                System.out.println("----------💤🛌🏽💤 Dormir 💤🛌🏽💤----------");
+                dormir(pessoa);
                 break;
             case 3:
-                System.out.println("----------🥝🥞🚰🥕🥐🚰🥓🌮 Ter uma refeição 🥝🥞🚰🥕🥐🚰🥓🌮----------");
+                fazerRefeicao(pessoa);
                 break;
             case 4:
-                System.out.println("----------🤾🏽‍♂️🤸🏽‍♀️🤼‍♀️🥷🏽️️ Treinar 🤾🏽‍♂️🤸🏽‍♀️🤼‍♀️🥷🏽----------");
+                treinar(pessoa);
                 break;
             case 5:
-                System.out.println("----------🛒🛍️💅🏽 Ir às compras 🛒🛍️💅🏽----------");
+                fazerCompras(pessoa, shopping);
                 break;
             case 6:
-                System.out.println("----------🏫🎒📓 Ter formação 🏫🎒📓----------");
+                terFormacao(pessoa);
                 break;
             case 7:
-                System.out.println("----------🏠🚗👔 Visitar as propriedades 🏠🚗👔----------");
+                visitarPropriedades(pessoa);
                 break;
             case 8:
-                System.out.println("----------🧑🏽‍⚕️🧑🏽‍🍳👷🏽 Procurar nova profissão 👷🏽🧑🏽‍🍳🧑🏽‍⚕️----------");
+                procuraProfissao(pessoa, centroEmprego);
+                break;
+            default:
+                System.out.println();
+                System.out.println("⚠️⚠️⚠️Escolha uma opção entre 1 - 8");
                 break;
         }
     }
 
     //aumenta dinheiro do jogador com base no salário/dia da sua profissão
-    public void trabalhar(Jogador pessoa) {
+    public void trabalhar(Jogador pessoa, CentroEmprego centroEmprego) {
 
         double dinheiro = pessoa.getDinheiro();
 
         //extrair o nome da profissao
         Profissao profissao = pessoa.getProfissaoAtual();
 
-        CentroEmprego centroEmprego = null;
         if (profissao == null) {
             // Mandar ao centro de emprego
             // Invocar metodo do centro de emprego
-           centroEmprego.imprimirListaDeProfissoes();
-
+            System.out.println("⚠️⚠️⚠️Não tem profissão ainda!!!");
+            System.out.println();
+            //atribui
+            centroEmprego.atribuirEmpregoAoJogador(pessoa);
         } else {
             double salarioDia = profissao.getSalarioDia();
 
-            //aumenta dinheiro
+            //aumenta dinheiro com base no salário/dia da sua profissão
             pessoa.setDinheiro(pessoa.getDinheiro() + salarioDia);
+
+            System.out.println("Ganhou um dia de trabalho 😎 ");
+            System.out.println();
         }
     }
 
 
-    //repõe a necessidade de sono de volta a 100.
-    public int dormir(Jogador pessoa) {
-        int sono = pessoa.getNecessidadeSono();
-        //repor a 100
-        sono = 100;
-        return sono;
+    //repõe a necessidade de sono de volta a 100
+    public void dormir(Jogador pessoa) {
+        pessoa.setNecessidadeSono(100);
+        System.out.println("Necessidade de sono reposta!");
+        System.out.println();
     }
 
     // repõe a necessidade de refeição de volta a 100 e diminui 5 dinheiros
     public void fazerRefeicao(Jogador pessoa) {
 
-        // Remove ao dinheiro, o custo da refeição
-        pessoa.setDinheiro(pessoa.getDinheiro() - 5);
+        if (pessoa.getDinheiro() >= 5) {
+            // Remove ao dinheiro, o custo da refeição
+            pessoa.setDinheiro(pessoa.getDinheiro() - 5);
+            pessoa.setNecessidadeRefeicao(100);
+            System.out.println("Necessidade de refeição reposta 😎");
+            System.out.println("💵💵Dinheiro atual: " + pessoa.getDinheiro());
+            System.out.println();
+        } else {
+            System.out.println();
+            System.out.println("⚠️⚠️Não tem dinheiro suficiente para comer!");
+        }
 
-        int necessRefeicao  = pessoa.getNecessidadeSono();
-            //repor a 100
-            necessRefeicao = 100;
     }
 
     // Treinar repõe a necessidade social de volta a 100.
     public void treinar(Jogador pessoa) {
-        int necesSocial = pessoa.getNecessidadeSocial();
-        necesSocial = 100;
+        pessoa.setNecessidadeSocial(100);
+        System.out.println("Necessidade social reposta 😎");
+        System.out.println();
+        System.out.println();
     }
 
 
     //ir as compras
-    public void fazerCompras(Jogador pessoa) {
-        Shopping shopping = new Shopping();
+    public void fazerCompras(Jogador pessoa, Shopping shopping) {
+        System.out.println();
         shopping.vender(pessoa);
 
     }
 
     public void terFormacao(Jogador pessoa) {
         //se tiver emprego aumenta educaçao em 2
+
         Profissao profissao = pessoa.getProfissaoAtual();
-        if(profissao != null){
+        if (profissao != null) {
+            pessoa.setEducacao((pessoa.getEducacao()) + 2);
+        }
+        System.out.println();
+        System.out.println("🧑🏽‍🏫🧑🏽‍🏫O investimento na educação é o melhor legado que podemos deixar para as próximas gerações.");
 
+    }
+
+    public static void visitarPropriedades(Jogador jogador) {
+        jogador.exibirPropriedadesJogador();
+
+    }
+
+    public void procuraProfissao(Jogador pessoa, CentroEmprego centroEmprego) {
+        //listar profissoes didponiveis
+        centroEmprego.imprimirListaDeProfissoes();
+
+        Scanner input = new Scanner(System.in);
+        System.out.println();
+        System.out.println("🧑🏽‍⚕️🧑🏽‍💼👷🏽‍♀️👨🏽‍🏭 Escolha uma profissão: ");
+        int profissaoEscolhida = input.nextInt();
+        Profissao profissao = centroEmprego.getListaDeProfissoes().get(profissaoEscolhida);
+
+
+        if (profissao.isFormal() && pessoa.temAcessorioFormal() && pessoa.getEstatuto() >= profissao.getEstatuto() && pessoa.getEducacao() >= profissao.getNivelMinimoEducacao()) {
+            pessoa.setProfissaoAtual(profissao);
+            System.out.println("\nSua nova profissão: " + pessoa.getProfissaoAtual().getNome());
+        } else if (pessoa.getEstatuto() >= profissao.getEstatuto() && pessoa.getEducacao() >= profissao.getNivelMinimoEducacao()) {  //se nao for formal e tiver estatuto e escolaridade minima consegue o emprego
+            pessoa.setProfissaoAtual(profissao);
+            System.out.println("\nSua nova profissão: " + pessoa.getProfissaoAtual().getNome());
+        } else {
+            System.out.println("Agradecemos sua candidatura e tempo dedicado ao processo seletivo. " +
+                    "\nInfelizmente, não fomos capazes de avançar com sua candidatura. " +
+                    "\nDesejamos sucesso em sua busca por novas oportunidades!");
+            System.out.println();
+        }
+
+    }
+
+    //necessidade sono diminui 25 pontos, a necessidade refeição diminui 20
+    //pontos e a necessidade social diminui 15 pontos
+    public void necessidadesFimCiclo(Jogador pessoa) {
+        pessoa.setNecessidadeSono(pessoa.getNecessidadeSono() - 25);
+        pessoa.setNecessidadeRefeicao(pessoa.getNecessidadeRefeicao() - 20);
+        pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() - 15);
+    }
+
+
+    // ir para a universidade, caso sim, a educação aumenta 50, mas contrai uma
+    //divida de 3.000 dinheiros.
+    public void universidade(Jogador pessoa) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\t🧑🏽‍🎓Deseja ir a universidade?");
+        System.out.println("\t1.Sim ☺️");
+        System.out.println("\t2.Não 😢");
+        int resposta = input.nextInt();
+
+        if (resposta == 1) {
+            pessoa.setEducacao((pessoa.getEducacao()) + 50);
+            pessoa.setDinheiro(pessoa.getDinheiro() - 3000);
+        } else if (resposta == 2) {
+
+            System.out.println("Optar por não ir à universidade é uma escolha legítima. " +
+                    "\nLembre-se de que o sucesso pode ser alcançado por meio de diferentes trajetórias. " +
+                    "\nSiga seus sonhos e busque oportunidades que estejam alinhadas com seus objetivos e valores");
+            System.out.println();
+        } else {
+            System.out.println("Escolha uma das opções 'Sim' ou 'Não' ");
+        }
+
+    }
+
+    public boolean casar(Jogador pessoa, Casamento casamento) {
+
+        NPC npcEscolhido = null;
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("\t👰🏽💒Deseja casar-se?");
+        System.out.println("\t1.Sim ☺️");
+        System.out.println("\t2.Não 😢");
+        int resposta = input.nextInt();
+
+        if (resposta == 1) {
+            casamento.ListarTodosNpcs();
+
+            System.out.println();
+
+            System.out.println();
+            System.out.println("\t👰🏽💒Com quem deseja casar-se? Escolher o id 🆔 da pessoa escolhida 🌸");
+            int idNpcEscolhido = input.nextInt();
+
+            npcEscolhido = casamento.getListaDeNpcs().get(idNpcEscolhido);
+
+            //se jogador tiver uma propriedade que albergue 2 ou mais pessoa
+            //e tem estatuto minimo para tal
+            if (casamento.podeCasarComNpc(pessoa, npcEscolhido)) {
+
+                //adiciona ao array da familia do jogador
+                pessoa.adicionarFamiliar(npcEscolhido);
+                //dinheiro
+                Double dinheiroNpcEscolhido = npcEscolhido.getDinheiro();
+
+                //adicionatodo o dinheiro do NPc ao dinheiro do jogador
+                pessoa.setDinheiro(pessoa.getDinheiro() + dinheiroNpcEscolhido);
+
+                //remover dinheiro do casamento??
+                npcEscolhido.setDinheiro(npcEscolhido.getDinheiro() - dinheiroNpcEscolhido);
+
+
+            }
+            return true;
+
+        } else if (resposta == 2) {
+            System.out.println("Lembre-se de que o casamento não é o único caminho para uma vida " +
+                    "\nplena e feliz. Concentre-se em construir uma vida significativa, repleta de " +
+                    "\nconexões emocionais e realizações pessoais, independentemente do status civil");
+        } else {
+            System.out.println("Escolha uma das opções 'Sim' ou 'Não' ");
+        }
+        return false;
+    }
+
+
+    public void terFilho(Jogador pessoa, Casamento casamento) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Deseja ter um filho? 👨‍👩‍👧‍👦👶🏽 S/N");
+        String resposta = scanner.next();
+        String resposta2;
+
+        if (resposta.equalsIgnoreCase("S")) {
+            do {
+                if (pessoa.propriedadeComMaiorCapacidade() == pessoa.quantidadeFamilia()) {
+                    System.out.println("⚠️⚠️⚠️A sua propriedade com maior capacidade já não permite ter mais pessoas");
+                    System.out.println();
+                    break;
+                }
+
+                NPC npcFilho = casamento.selecionarRandomNpcFilho(pessoa.getFilhos());
+                pessoa.adicionarFamiliar(npcFilho);
+
+                System.out.println("👶🏽🍼Teve um filho/a: " + npcFilho.getNome());
+
+                System.out.println("Deseja ter mais um filho? S/N");
+                resposta2 = scanner.next();
+
+            } while (resposta2.equalsIgnoreCase("S"));
+
+        } else {
+            System.out.println("A decisão de não ter filhos é uma escolha individual e corajosa." +
+                    "\n É sobre viver de acordo com nossas próprias convicções e prioridades");
+        }
+
+
+    }
+
+    public void retirarFilhos(Jogador pessoa) {
+        if (pessoa.getDinheiro() <= -3250) {
+            pessoa.removerFilhos();
+            System.out.println("Atenção não possui condições financeiras suportar o custo familiar" +
+                    "\nInfelizmente teremos de retirar os seus filhos! 😿😿");
         }
     }
 
-    public static void visitarPropriedades(Pessoa pessoa) {
-        if (pessoa instanceof Jogador) {
-            //listar propriedades do jogador
-            ((Jogador) pessoa).exibirPropriedadesJogador();
+    //mais eventos
+    public void jogarEuroDinheiro(Jogador pessoa) {
+        Random random = new Random();
+        int numeroAleatorio = random.nextInt(91) + 10; // número aleatório entre 10 e 100
+
+
+        // Pedir ao jogador para escolher um número
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Vamos jogar ao euro dinheiro 💵🤑🤑💸\n");
+        System.out.println("🔢Escolha um número:");
+        int escolha = scanner.nextInt();
+        // Verificar se a escolha é um número par entre 10 e 100
+        if (escolha % 2 == 0 && escolha >= 10 && escolha <= 100) {
+            System.out.println("🥳🥳Parabéns! Ganhou 1000 dinheiros!");
+            pessoa.setDinheiro(pessoa.getDinheiro() + 1000);
+        } else {
+            System.out.println("😭😭Não foi desta. Tente novamente na próxima vez.");
+            System.out.println();
         }
     }
 
-    public void procuraProfissao() {
+    public void viajar(Jogador pessoa) {
+        int opcao;
+
+        do {
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Escolhar um destino pra sua viajem:");
+            System.out.println("1.Cabo Verde ");
+            System.out.println("2.França");
+            System.out.println("3.Brasil");
+            System.out.println("4.Não quero viajar!");
+
+            opcao = scanner.nextInt();
+
+
+            switch (opcao) {
+                case 1:
+                    pessoa.setDinheiro(pessoa.getDinheiro() - 1000);
+                    pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 20);
+                    break;
+
+                case 2:
+                    pessoa.setDinheiro(pessoa.getDinheiro() - 100);
+                    pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 10);
+                    break;
+
+                case 3:
+                    pessoa.setDinheiro(pessoa.getDinheiro() - 2000);
+                    pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 15);
+                    break;
+
+                case 4:
+                    System.out.println("Às vezes, ficar em casa é a melhor viagem. " +
+                            "\nAproveite este tempo para relaxar, explorar o local e encontrar felicidade " +
+                            "em pequenas coisas. ");
+                    break;
+                default:
+                    System.out.println("Escolha uma opção entre 1 - 3");
+
+            }
+        } while (opcao != 4);
+    }
+
+    public void sairAnoite(Jogador pessoa) {
+        Scanner scanner = new Scanner(System.in);
+        int opcao;
+
+        System.out.println("🌃🌃🌃🌃 Uma escapadinha noturna 🌃🌃🌃🌃");
+        System.out.println();
+        System.out.println("Quando quer volta para casa?");
+        System.out.println("1.Voltar para casa antes das 2h 😎");
+        System.out.println("2.Voltar até o nascer do sol 🌞");
+        System.out.println("3.Nao quero sair á noite!");
+        opcao = scanner.nextInt();
+
+        if (opcao == 1) {
+            pessoa.setNecessidadeSono(pessoa.getNecessidadeSono() - 10);
+
+        } else if (opcao == 2) {
+            pessoa.setNecessidadeSono(pessoa.getNecessidadeSono() - 20);
+        } else if (opcao == 3) {
+            pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() - 20);
+        } else {
+            System.out.println("Escolher um 1, 2 ou 3");
+        }
+
 
     }
 
+
+    public void partTimeFimDeSemana(Jogador pessoa) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Deseja fazer um part time no próximo fim de semana? S/N");
+        String resposta = scanner.next();
+
+        if (resposta.equalsIgnoreCase("S")) {
+            pessoa.setDinheiro(pessoa.getDinheiro() + 500);
+            pessoa.setNecessidadeSono(pessoa.getNecessidadeSono() - 10);
+            System.out.println("Um extrazinho 💵💸");
+        } else if (resposta.equalsIgnoreCase("N")) {
+            System.out.println("Decidir descansar durante o fim de semana é uma forma importante de cuidar de si mesmo. " +
+                    "\nLembre-se de que é fundamental equilibrar trabalho e descanso para manter sua saúde física e mental. " +
+                    "\nAproveite esse tempo para recarregar as energias, fazer o que ama e estar com pessoas queridas. " +
+                    "\nSua saúde e bem-estar vêm em primeiro lugar.");
+            System.out.println();
+            pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() - 10);
+        } else {
+            System.out.println("⚠️⚠️⚠️Digite 'S' ou 'N'");
+        }
+
+    }
+
+    public void irCinema(Jogador pessoa) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Ver filme em casa ou ir ao cinema? 🎥🎬");
+        System.out.println("🏠🎥1. Filme em casa ");
+        System.out.println("🎥🎬2.Ir ao cinema");
+        int opcao = scanner.nextInt();
+
+        if (opcao == 2) {
+            pessoa.setDinheiro(pessoa.getDinheiro() - 50);
+            pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 10);
+            System.out.println("Aproveite seu dia no cinema ao máximo! Deixe-se envolver pelas histórias na tela.   " +
+                    "\nQue esse tempo seja repleto de risadas, suspense e inspiração. " +
+                    "\nDivirta-se e desfrute cada momento na companhia de bons filmes e pipoca!");
+            System.out.println();
+            System.out.println("Comprar pipoca? S/N");
+            String resposta = scanner.next();
+
+            if (resposta.equalsIgnoreCase("S")) {
+                pessoa.setDinheiro(pessoa.getDinheiro() - 5);
+                pessoa.setNecessidadeRefeicao(pessoa.getNecessidadeRefeicao() + 10);
+                System.out.println("🍿🍿🍿Cinema, pipoca e diversão garantida. Aproveite o espetáculo!");
+            } else if (resposta.equalsIgnoreCase("S")) {
+                System.out.println("Sem pipoca? Sem problema! Aproveite o filme do seu jeito.");
+                pessoa.setNecessidadeRefeicao(pessoa.getNecessidadeRefeicao() - 10);
+            } else {
+                System.out.println("⚠️⚠️⚠️Digite 'S' ou 'N'");
+            }
+
+            System.out.println();
+        } else if (opcao == 1) {
+            System.out.println();
+            System.out.println("Aproveite o conforto do lar e deixe-se envolver por uma excelente sessão de cinema! " +
+                    "\nAconchegue-se no sofá, prepare suas guloseimas favoritas e embarque em uma jornada cinematográfica cheia de emoção e entretenimento. " +
+                    "\nQue esse momento traga diversão, relaxamento e boas lembranças. Desfrute do filme e do conforto do seu lar!");
+            System.out.println();
+            pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() - 10);
+        }
+    }
+
+    public void jantarFora(Jogador pessoa) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        System.out.println("------------------Jantar Fora---------------------");
+        System.out.println("🍽️Gostaria de aproveitar o jantar no conforto de casa ou " +
+                "preferiria sair para um jantar fora esta noite 'S/N' ");
+        String resposta = scanner.next();
+        if (resposta.equalsIgnoreCase("S")) {
+            System.out.println();
+            System.out.println("🍽️🕯️Perfeito! Vamos explorar um novo lugar e desfrutar de uma noite especial");
+            pessoa.setDinheiro(pessoa.getDinheiro() - 200);
+            pessoa.setNecessidadeRefeicao(pessoa.getNecessidadeRefeicao() + 10);
+            System.out.println();
+        } else if (resposta.equalsIgnoreCase("N")) {
+            System.out.println("🍽️🏠Ótimo! Vamos aproveitar uma refeição tranquila e aconchegante em casa então");
+            pessoa.setNecessidadeRefeicao(pessoa.getNecessidadeRefeicao() + 5);
+        } else {
+            System.out.println("Escolher 'S' ou 'N");
+        }
+
+    }
+
+    public void aprenderJava(Jogador jogador) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Que tal aprender a progrmar em Java S/N? 👨🏽‍💻");
+        String resposta = input.next();
+
+        if (resposta.equalsIgnoreCase("S")) {
+            jogador.setDinheiro(jogador.getDinheiro() + 100);
+            jogador.setNecessidadeSocial(jogador.getNecessidadeSocial() - 10);
+            System.out.println("Boa sorte! 🤣🤣🤣🤣");
+            System.out.println();
+        } else if (resposta.equalsIgnoreCase("N")) {
+            jogador.setNecessidadeSocial(jogador.getNecessidadeSocial() + 10);
+            System.out.println("Parabéns preservaste a tua saúde mental 😎😎😎😎");
+            System.out.println();
+        } else {
+            System.out.println("Escolha 'S ou 'N");
+        }
+    }
+
+
+    public boolean atingiuObjetivos(Jogador jogador) {
+        double valorPropriedades = jogador.valorDeTodosAsPropriedades();
+        double dinheiroJogador = jogador.getDinheiro();
+        double quantidadeFinal = valorPropriedades + dinheiroJogador;
+
+        System.out.println("Valor total do seu dinheiro: " + jogador.getDinheiro() + " 💵💵💵");
+        if (jogador.getObjetivoVida().equals(Objetivo.MILIONARIO)) {
+            //deve ter a soma o valor das suas propriedades
+            if (quantidadeFinal > 160000) {
+                return true;
+            }
+        }
+
+        if (jogador.getObjetivoVida().equals(Objetivo.FAMILIA_COMPLETA)) {
+            if (jogador.quantidadeFamilia() > 5) {
+                return true;
+            }
+        }
+
+        if (jogador.getObjetivoVida().equals(Objetivo.CELEBRIDADE)) {
+            if (jogador.getEstatuto() > 2000) {
+                return true;
+            }
+        }
+
+        if (jogador.getObjetivoVida().equals(Objetivo.PROFESSOR)) {
+            if (jogador.getEducacao() > 100 && jogador.getProfissaoAtual().getNome().equals("Professor")) {
+                return true;
+            }
+        }
+
+        if (jogador.getObjetivoVida().equals(Objetivo.MEDICO)) {
+            if (jogador.getEducacao() > 200 && jogador.getProfissaoAtual().getNome().equals("Médico")) {
+                return true;
+            }
+        }
+
+        if (jogador.getObjetivoVida().equals(Objetivo.VIAJAR_O_MUNDO)) {
+            if (jogador.quantidadeFamilia() < 4 && jogador.getProfissaoAtual().getNome().equals("Piloto")) {
+                return true;
+            }
+        }
+
+
+        if (jogador.getObjetivoVida().equals(Objetivo.PROGRAMADOR)) {
+            if (jogador.getNecessidadeSocial() < 30 && jogador.getProfissaoAtual().getNome().equals("Programador")) {
+                return true;
+            }
+        }
+
+
+        if (jogador.getObjetivoVida().equals(Objetivo.JOGADOR)) {
+            if (jogador.getNecessidadeSocial() > 3 && jogador.getProfissaoAtual().getNome().equals("Atleta")) {
+                return true;
+            }
+        }
+
+        if (jogador.getObjetivoVida().equals(Objetivo.CANTOR)) {
+            if (jogador.getEstatuto() > 1000) {
+                return true;
+            }
+        }
+
+        if (jogador.getDinheiro() < 0) {
+            return false;
+        }
+
+        return false;
+    }
 
 }
-
-
 
 
