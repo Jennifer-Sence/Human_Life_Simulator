@@ -17,21 +17,34 @@ public abstract class Pessoa {
         this.dinheiro = dinheiro;
     }
 
+    /**
+     * Método get nome da pessoa
+     *
+     * @return nome
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Método get dinheiro da pessoa
+     *
+     * @return dinheiro
+     */
     public double getDinheiro() {
         return dinheiro;
     }
 
+    /**
+     * Método set dinheiro da pessoa
+     */
     public void setDinheiro(double dinheiro) {
         this.dinheiro = dinheiro;
     }
 
     /**
      * Método para exibir os detalhes de uma pessoa
-     *Nome da pessoa e dinheiro
+     * Nome da pessoa e dinheiro
      */
     public void mostrarDetalhes() {
         System.out.println("🔡 Nome: " + this.nome);

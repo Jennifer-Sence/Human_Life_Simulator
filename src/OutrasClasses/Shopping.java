@@ -7,7 +7,6 @@ import Bens.Veiculo;
 import Personagens.Jogador;
 import Personagens.Pessoa;
 
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.Scanner;
 
@@ -15,11 +14,21 @@ public class Shopping {
 
     private ArrayList<Propriedade> coisasParaComprar;
 
+    /**
+     * Método construtor da classe Shopping
+     *
+     * @param coisasParaComprar lista com coisas para comprar
+     */
     public Shopping(ArrayList<Propriedade> coisasParaComprar) {
         this.coisasParaComprar = coisasParaComprar;
     }
 
-      public void imprimirImoveis(ArrayList<Propriedade> coisasParaComprar) {
+    /**
+     * Método para imprimir coisas para comprar
+     *
+     * @param coisasParaComprar lista de propriedades
+     */
+    public void imprimirCoisasParaComprar(ArrayList<Propriedade> coisasParaComprar) {
         for (int i = 0; i < coisasParaComprar.size(); i++) {
             System.out.println("🆔 Id: " + i);
             coisasParaComprar.get(i).exibirDetalhesPropriedade();
@@ -28,12 +37,20 @@ public class Shopping {
 
     }
 
-    public void removerPropriedadesDeCoisasParaComprar(int indexPropriedade){
-        coisasParaComprar.remove(indexPropriedade);
-    }
+    /**
+     * Método vender, embaralha o array de coisas para comprar
+     * Confirma com o jogador qual secção deseja fazer compras
+     * Conforme a secção, imobiliario, stand ou fashion outlet
+     * Adiciona a uma montra de cada secção com 10 itens
+     * Imprime os 10 intens, pergunta ao utilizador qual propriedade quer comprar
+     * Se jogador tiver dinheiro sufuciente, faz a compra e o iem é adicionado
+     * ao array de propriedades do jogador
+     * E remove o item da montra
+     *
+     * @param pessoa
+     */
 
-
-    public  void vender(Pessoa pessoa) {
+    public void vender(Pessoa pessoa) {
 
 
         Scanner scanner = new Scanner(System.in);
@@ -42,7 +59,6 @@ public class Shopping {
 
         int opcao;
         do {
-            System.out.println("⚠️⚠️⚠️ Dinheiro atual: " + pessoa.getDinheiro() + " 💵💵");
             System.out.println();
             System.out.println("🛒🛍️ Qual a secção deseja aceder?\n");
             System.out.println("1- Imobiliario 🏠");
@@ -65,19 +81,19 @@ public class Shopping {
                     }
 
                     // Imprime a montra
-                    imprimirImoveis(imoveisMontra);
+                    imprimirCoisasParaComprar(imoveisMontra);
 
                     System.out.println("🏡Qual imóvel deseja adiquir? ");
                     int idImovel = scanner.nextInt();
 
-                    Propriedade imovelComprado= imoveisMontra.get(idImovel);
+                    Propriedade imovelComprado = imoveisMontra.get(idImovel);
 
                     if (pessoa instanceof Jogador) {
-                       if(((Jogador) pessoa).adquiriuPropriedade(imovelComprado)){
-                           // Só fazer as duas seguintes linhas, se efetivamente tiver comprado
-                           imoveisMontra.remove(imovelComprado);
-                           this.coisasParaComprar.remove(imovelComprado);
-                       }
+                        if (((Jogador) pessoa).adquiriuPropriedade(imovelComprado)) {
+                            // Só fazer as duas seguintes linhas, se efetivamente tiver comprado
+                            imoveisMontra.remove(imovelComprado);
+                            this.coisasParaComprar.remove(imovelComprado);
+                        }
                     }
 
 
@@ -96,15 +112,15 @@ public class Shopping {
                     }
 
                     // Imprime a montra de veiculos
-                    imprimirImoveis(veiculosMontra);
+                    imprimirCoisasParaComprar(veiculosMontra);
 
                     System.out.println("🚗Qual veiculo deseja adiquir? ");
                     int idVeiculo = scanner.nextInt();
 
-                    Propriedade veiculoComprado= veiculosMontra.get(idVeiculo);
+                    Propriedade veiculoComprado = veiculosMontra.get(idVeiculo);
 
                     if (pessoa instanceof Jogador) {
-                        if(((Jogador) pessoa).adquiriuPropriedade(veiculoComprado)){
+                        if (((Jogador) pessoa).adquiriuPropriedade(veiculoComprado)) {
                             // Só fazer as duas seguintes linhas, se efetivamente tiver comprado
                             veiculosMontra.remove(veiculoComprado);
                             this.coisasParaComprar.remove(veiculoComprado);
@@ -126,15 +142,15 @@ public class Shopping {
                     }
 
                     // Imprime a montra de roupa
-                    imprimirImoveis(modaMontra);
+                    imprimirCoisasParaComprar(modaMontra);
 
                     System.out.println("👗Qual acessório deseja adiquir? ");
                     int idModa = scanner.nextInt();
 
-                    Propriedade acessorioComprado= modaMontra.get(idModa);
+                    Propriedade acessorioComprado = modaMontra.get(idModa);
 
                     if (pessoa instanceof Jogador) {
-                        if(((Jogador) pessoa).adquiriuPropriedade(acessorioComprado)){
+                        if (((Jogador) pessoa).adquiriuPropriedade(acessorioComprado)) {
                             // Só fazer as duas seguintes linhas, se efetivamente tiver comprado
                             modaMontra.remove(acessorioComprado);
                             this.coisasParaComprar.remove(acessorioComprado);

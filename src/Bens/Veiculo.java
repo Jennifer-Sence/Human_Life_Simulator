@@ -20,7 +20,8 @@ public class Veiculo extends Propriedade {
     }
 
     /**
-     * Método para detalhes dos veículos
+     * Método para exibir detalhes dos veículos
+     * Nome, custo, estatuto, marca e modelo
      */
     @Override
     public void exibirDetalhesPropriedade() {

@@ -20,6 +20,7 @@ public abstract class Propriedade {
 
     /**
      * Metodo get para o nome da propriedade
+     *
      * @return nome da propriedade
      */
     public String getNome() {
@@ -28,6 +29,7 @@ public abstract class Propriedade {
 
     /**
      * Metodo get para o estatuto da propriedade
+     *
      * @return nome da propriedade
      */
     public int getEstatuto() {
@@ -36,6 +38,7 @@ public abstract class Propriedade {
 
     /**
      * Metodo get para o custo da propriedade
+     *
      * @return custo da prorpiedade
      */
     public double getCusto() {
@@ -43,15 +46,14 @@ public abstract class Propriedade {
     }
 
     /**
-     * Método para detalhes das propriedades
+     * Método para mostrar detalhes das propriedades
+     * Nome, custo e estatuto
      */
     public void exibirDetalhesPropriedade() {
         System.out.println("🔡 Nome: " + this.nome);
         System.out.println("🤑 Custo: " + this.custo);
         System.out.println("🏡 Estatuto: " + this.estatuto);
     }
-
-
 
 
 }

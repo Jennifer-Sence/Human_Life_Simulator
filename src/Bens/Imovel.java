@@ -1,11 +1,12 @@
 package Bens;
 
-public class Imovel extends Propriedade{
+public class Imovel extends Propriedade {
     private int capacidadePessoas;
 
 
     /**
      * Método construtor da classe "Imovel"
+     *
      * @param nome
      * @param custo
      * @param estatuto
@@ -21,6 +22,7 @@ public class Imovel extends Propriedade{
 
     /**
      * Método get para a capacidade de pessoas de um imóvel
+     *
      * @return a quantidade de pessoas que o imóvel é capz de receber
      */
     public int getCapacidadePessoas() {
@@ -29,12 +31,13 @@ public class Imovel extends Propriedade{
 
 
     /**
-     * Método para exibir detalhes dos imóveis (capacidade de pessoas)
+     * Método para exibir detalhes dos imóveis
+     * Nome, custo, estatuto e capacidade de pessoas
      */
     @Override
-    public void exibirDetalhesPropriedade(){
+    public void exibirDetalhesPropriedade() {
         super.exibirDetalhesPropriedade();
-        System.out.println("👨🏿‍👩🏽‍👧🏾‍👦🏿Capacidade de pessoas: " +this.capacidadePessoas);
+        System.out.println("👨🏿‍👩🏽‍👧🏾‍👦🏿Capacidade de pessoas: " + this.capacidadePessoas);
     }
 
 

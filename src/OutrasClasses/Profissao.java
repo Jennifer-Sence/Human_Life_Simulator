@@ -9,6 +9,7 @@ public class Profissao {
 
     /**
      * Método construtor para a classe "Profissao"
+     *
      * @param nome
      * @param salarioDia
      * @param formal
@@ -27,6 +28,7 @@ public class Profissao {
 
     /**
      * Método get para o nome da profissão
+     *
      * @return nome da profissão
      */
     public String getNome() {
@@ -36,6 +38,7 @@ public class Profissao {
 
     /**
      * Método get para formalidade da profissão
+     *
      * @return se profissão é formal ou não
      */
     public boolean isFormal() {
@@ -45,6 +48,7 @@ public class Profissao {
 
     /**
      * Método get para o estatuto da profissão
+     *
      * @return estatuto da profissão
      */
     public int getEstatuto() {
@@ -54,7 +58,8 @@ public class Profissao {
 
     /**
      * Método get para o nivel de educação minima de uma profissão
-     * @return  nivel de educação minima da profissão
+     *
+     * @return nivel de educação minima da profissão
      */
     public int getNivelMinimoEducacao() {
         return nivelMinimoEducacao;
@@ -64,6 +69,7 @@ public class Profissao {
 
     /**
      * Método get para sálario por dia de uma profissão
+     *
      * @return sálario por dia de uma profissão
      */
     public double getSalarioDia() {
@@ -74,16 +80,16 @@ public class Profissao {
      * Método para exibir detalhs de uma profissão
      * Nome, sálario, se é ou não formal, estatuto da profissão e o nível minimo de escolaridade
      */
-    public void exibirDetalhesProfissao(){
-       System.out.println("🔠Nome: " + this.nome);
-       System.out.println("💵☀️Salario por dia: " + this.salarioDia);
-       if (formal) {
-           System.out.println("É uma profissão formal 🧐");
-       }else{
-           System.out.println("Não é uma profissão formal 👙");
-       }
-       System.out.println("🏫Estatuto: " + this.estatuto);
-       System.out.println("📓Nivel minimo de Educação: " + this.nivelMinimoEducacao);
+    public void exibirDetalhesProfissao() {
+        System.out.println("🔠Nome: " + this.nome);
+        System.out.println("💵☀️Salario por dia: " + this.salarioDia);
+        if (formal) {
+            System.out.println("É uma profissão formal 🧐");
+        } else {
+            System.out.println("Não é uma profissão formal 👙");
+        }
+        System.out.println("🏫Estatuto: " + this.estatuto);
+        System.out.println("📓Nivel minimo de Educação: " + this.nivelMinimoEducacao);
 
     }
 }

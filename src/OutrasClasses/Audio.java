@@ -7,10 +7,11 @@ import java.io.File;
 
 public class Audio {
     /**
-     * Método para leitura e execução de um ficheiro audio
-     * @param path
+     * Método estático para leitura e execução de um ficheiro audio em loop
+     *
+     * @param path caminho do arquivo de áudio a ser reproduzido
      */
-    public static void playMusic(String path){
+    public static void playMusic(String path) {
         try {
             File audio = new File(path);
             if (audio.exists()) {
@@ -20,7 +21,7 @@ public class Audio {
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println();
         }
     }

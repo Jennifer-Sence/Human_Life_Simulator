@@ -1,11 +1,12 @@
 package Bens;
 
-public class AcessorioModa extends Propriedade{
+public class AcessorioModa extends Propriedade {
     private String marca;
     private boolean formal;
 
     /**
-     * Método construto da classe AcessorioModa
+     * Método construtor da classe AcessorioModa
+     *
      * @param nome
      * @param custo
      * @param estatuto
@@ -19,28 +20,29 @@ public class AcessorioModa extends Propriedade{
     }
 
     /**
-     * Método para exibir informações
-     * dos acessorios de moda
+     * Método para exibir informações dos acessorios de moda
+     * * Nome, custo, estatuto, marca e se é ou não formal
      */
 
     @Override
     public void exibirDetalhesPropriedade() {
         super.exibirDetalhesPropriedade();
-        System.out.println("Marca: "+this.marca);
+        System.out.println("Marca: " + this.marca);
         if (formal) {
             System.out.println("Formal 🕴 ");
-        }else{
+        } else {
             System.out.println("Não formal 👙");
         }
     }
 
     /**
      * Método para verificar se o acessorio é ou não formal
-     * @return
+     *
+     * @return true se for formal ou false se não for formal
      */
 
-    public boolean acessorioFomal(){
-        if(this.formal){
+    public boolean acessorioFomal() {
+        if (this.formal) {
             return true;
         }
         return false;

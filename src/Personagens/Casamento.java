@@ -6,6 +6,9 @@ import java.util.Random;
 public class Casamento {
     private ArrayList<NPC> listaDeNpcs;
 
+    /**
+     * Método construtor da classe casamento
+     */
     public Casamento() {
         this.listaDeNpcs = new ArrayList<NPC>();
     }
@@ -13,17 +16,27 @@ public class Casamento {
     //getters----------------------------------------------
 
 
+    /**
+     * Método get para a lista de NPC´s
+     *
+     * @return lista de NPC´s
+     */
     public ArrayList<NPC> getListaDeNpcs() {
         return listaDeNpcs;
     }
 
-    //----------------------------------------------------------
-
-
+    /**
+     * Adiciinar um novo npc a lista de NPC´s
+     *
+     * @param npcNovo
+     */
     public void addNpc(NPC npcNovo) {
         this.listaDeNpcs.add(npcNovo);
     }
 
+    /**
+     * Listar NPC´s
+     */
     public void ListarTodosNpcs() {
         int contador = 0;
         for (NPC npcAtual : listaDeNpcs) {
@@ -34,6 +47,14 @@ public class Casamento {
         }
     }
 
+    /**
+     * Verifica se o jogador pode ou não casar com um npc
+     * Se sim retorna true, se não, false
+     *
+     * @param jogador
+     * @param npc
+     * @return
+     */
     public boolean podeCasarComNpc(Jogador jogador, NPC npc) {
 
 
@@ -50,7 +71,13 @@ public class Casamento {
     }
 
 
-    public NPC selecionarRandomNpcFilho( ArrayList<NPC> filhosAtuais) {
+    /**
+     * Gerar um npc com caracteristicas de um filho
+     *
+     * @param filhosAtuais array de filhos atuais
+     * @return um npc random
+     */
+    public NPC selecionarRandomNpcFilho(ArrayList<NPC> filhosAtuais) {
 
         ArrayList<NPC> listaDeNpcsFilho = new ArrayList<NPC>();
 
@@ -64,6 +91,6 @@ public class Casamento {
         Random random = new Random();
         int index = random.nextInt(listaDeNpcsFilho.size());
         return listaDeNpcsFilho.get(index);
-   }
+    }
 
 }

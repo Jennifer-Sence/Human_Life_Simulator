@@ -17,10 +17,18 @@ import java.util.Scanner;
 
 public class Sims {
 
-
+    /**
+     * Método construtor sem parâmetro da classe Sims
+     */
     public Sims() {
     }
 
+    /**
+     * Método para imprimir ficheiro txt na consula
+     *
+     * @param path caminho para o ficheiro
+     * @throws FileNotFoundException lança execção caso o caminho do ficgeiro não for encontrado
+     */
     public static void imprimirFicheiro(String path) throws FileNotFoundException {
         // Instanciar um Scanner para o Ficheiro que foi passado por parâmetro
         Scanner leitorFicheiro = new Scanner(new File(path));
@@ -34,7 +42,11 @@ public class Sims {
 
 
     /**
-     * Método construtor de feedback da consola
+     * Método estático para criar um jogador a partir do feedback da consola
+     * Permite criar um jogador um novo jogador com seu nome e objetivo de vidas escolhido
+     * Restantes atributos default
+     *
+     * @return um jogador
      */
 
     public static Jogador criarPessoa() {
@@ -124,6 +136,14 @@ public class Sims {
     }
 
 
+    /**
+     * Método jogo recebe as instãncias das classes
+     *
+     * @param dias            número de dias em que o jogo corre
+     * @param jogadorAnterior jogador, podendo ser um novo a ser criado
+     *                        ou um da jogada anterior
+     * @throws FileNotFoundException caso o fivheiro não seja encontrado
+     */
     public void jogo(int dias, Jogador jogadorAnterior) throws FileNotFoundException {
 
         //Instancias de imovel
@@ -262,7 +282,9 @@ public class Sims {
         NPC npc40 = new NPC("Mason", 1000, 10);
 
 
+        //intsncias da classe casamento
         Casamento casamento = new Casamento();
+        //adicionar cada uma das instancias dos npcs a lista de npc´s
         casamento.addNpc(npc1);
         casamento.addNpc(npc2);
         casamento.addNpc(npc3);
@@ -305,8 +327,10 @@ public class Sims {
         casamento.addNpc(npc40);
 
 
+        //arry com proriedades, veiculos, imoveis e acesorios moda
         ArrayList<Propriedade> propriedade1 = new ArrayList<>();
 
+        //adiciona ao array cada um dos imoveis
 
         propriedade1.add(imovel1);
         propriedade1.add(imovel2);
@@ -373,14 +397,11 @@ public class Sims {
         propriedade1.add(acessorio19);
         propriedade1.add(acessorio20);
 
-        Jogador jogador;
+        //instanciar um shooping, recebendo o array com coisa para comprar
+        // ou seja, todas a propriedades
         Shopping shopping1 = new Shopping(propriedade1);
-        if (jogadorAnterior == null) {
-            jogador = Sims.criarPessoa();
-        } else {
-            jogador = jogadorAnterior;
-        }
 
+        //array com todas as profissões
         ArrayList<Profissao> profissoes = new ArrayList<>();
         profissoes.add(profissao1);
         profissoes.add(profissao2);
@@ -403,8 +424,18 @@ public class Sims {
         profissoes.add(profissao19);
         profissoes.add(profissao20);
 
-
+        //centro com o arry de profissões
         CentroEmprego centroEmprego = new CentroEmprego(profissoes);
+
+        //instanciar um jogador
+        Jogador jogador;
+        //se o metodo receber o jogador anterior como null, cria-se um jogador novo
+        //se não, o jogador será o jogador anterior
+        if (jogadorAnterior == null) {
+            jogador = Sims.criarPessoa();
+        } else {
+            jogador = jogadorAnterior;
+        }
 
 
         // Ciclo corre uma vez para cada dia 🌞🌚
@@ -428,7 +459,7 @@ public class Sims {
             if (diaAtual > 22 && jogador.getFamilia().size() > 0 && diaAtual <= 60) {
                 terFilho(jogador, casamento);
             }
-            if (diaAtual == 70) {
+            if (diaAtual == 1) {
                 viajar(jogador);
             }
 
@@ -488,6 +519,10 @@ public class Sims {
             }
         }
         Scanner input = new Scanner(System.in);
+        //verifica se o jogador atingiu os seus objetivos
+        //se sim, o jogo termina
+        // se não permite ao jogador jogar com um novo personagem
+        // ou jogar novamente com o mesmo personagem
         if (atingiuObjetivos(jogador)) {
             System.out.println("🥳🥳🥳Parabéns atingiu todo o seu objetivo de vida e ganhou o jogo!");
             imprimirFicheiro("src/Files/win.txt");
@@ -499,6 +534,9 @@ public class Sims {
 
             System.out.println("Quer continuar com o jogador? S/N ");
             String resposta = input.next();
+            //se sim, chamar o metodo jogo e passar o jogador antigo com o mesmo nome e
+            // o mesmo objetivo de vida da jogada anterior
+            // se não, recebe o jogador com parametro null, criando aasim um jogador novo
             if (resposta.equalsIgnoreCase("S")) {
                 jogador.resetar();
                 this.jogo(100, jogador);
@@ -509,10 +547,19 @@ public class Sims {
 
     }
 
+    /**
+     * Método para cada o jogador escolher atividades
+     * em cada um dos momentos do dia
+     *
+     * @param pessoa        jogador
+     * @param centroEmprego lista com todas as profissões
+     * @param shopping      lista com todas as propriedades
+     */
     public void momentoDia(Jogador pessoa, CentroEmprego centroEmprego, Shopping shopping) {
         Scanner input = new Scanner(System.in);
 
         //verifica niveis minimos de necessidades
+
         if (pessoa.getNecessidadeRefeicao() < 25) {
             System.out.println();
             System.out.println("⚠️⚠️⚠️⚠️Atenção níveis de necessidades de refeição abaixo de 25!");
@@ -548,7 +595,6 @@ public class Sims {
         }
 
         //necessidade de social
-
         if (pessoa.getNecessidadeSocial() < 25) {
             System.out.println();
             System.out.println("⚠️⚠️⚠️⚠️Atenção níveis de necessidades social abaixo de 25!");
@@ -615,7 +661,15 @@ public class Sims {
         }
     }
 
-    //aumenta dinheiro do jogador com base no salário/dia da sua profissão
+    /**
+     * Aumenta dinheiro do jogador com base no salário/dia da sua profissão
+     * Se ainda não tiver uma profissão, permite ao jogador escolher
+     * uma profissão e lhe é atribuida esta proffissão
+     *
+     * @param pessoa
+     * @param centroEmprego
+     */
+
     public void trabalhar(Jogador pessoa, CentroEmprego centroEmprego) {
 
         double dinheiro = pessoa.getDinheiro();
@@ -641,32 +695,42 @@ public class Sims {
         }
     }
 
-
-    //repõe a necessidade de sono de volta a 100
+    /**
+     * Repõe a necessidade de sono de volta a 100
+     *
+     * @param pessoa jogador
+     */
     public void dormir(Jogador pessoa) {
         pessoa.setNecessidadeSono(100);
         System.out.println("Necessidade de sono reposta!");
         System.out.println();
     }
 
-    // repõe a necessidade de refeição de volta a 100 e diminui 5 dinheiros
+    /**
+     * Repõe a necessidade de refeição de volta a 100 e diminui 5 dinheiros
+     * Reseta necessidade de refeição para 100
+     * Mostra ao jogador o valor do dinheiro atual
+     *
+     * @param pessoa jogador
+     */
+
     public void fazerRefeicao(Jogador pessoa) {
 
-        if (pessoa.getDinheiro() >= 5) {
-            // Remove ao dinheiro, o custo da refeição
-            pessoa.setDinheiro(pessoa.getDinheiro() - 5);
-            pessoa.setNecessidadeRefeicao(100);
-            System.out.println("Necessidade de refeição reposta 😎");
-            System.out.println("💵💵Dinheiro atual: " + pessoa.getDinheiro());
-            System.out.println();
-        } else {
-            System.out.println();
-            System.out.println("⚠️⚠️Não tem dinheiro suficiente para comer!");
-        }
+        // Remove ao dinheiro, o custo da refeição
+        pessoa.setDinheiro(pessoa.getDinheiro() - 5);
+        pessoa.setNecessidadeRefeicao(100);
+        System.out.println("Necessidade de refeição reposta 😎");
+        System.out.println();
+        System.out.println("💵💵Dinheiro atual: " + pessoa.getDinheiro());
 
     }
 
-    // Treinar repõe a necessidade social de volta a 100.
+    /**
+     * Treinar repõe a necessidade social de volta a 100
+     *
+     * @param pessoa jogador
+     */
+
     public void treinar(Jogador pessoa) {
         pessoa.setNecessidadeSocial(100);
         System.out.println("Necessidade social reposta 😎");
@@ -676,14 +740,27 @@ public class Sims {
 
 
     //ir as compras
+
+    /**
+     * Ir ao shopping e escolher uma secção a qual pretnder fazer compras
+     *
+     * @param pessoa
+     * @param shopping
+     */
     public void fazerCompras(Jogador pessoa, Shopping shopping) {
         System.out.println();
         shopping.vender(pessoa);
 
     }
 
+
+    /**
+     * Se tiver emprego aumenta educação em 2
+     *
+     * @param pessoa
+     */
     public void terFormacao(Jogador pessoa) {
-        //se tiver emprego aumenta educaçao em 2
+
 
         Profissao profissao = pessoa.getProfissaoAtual();
         if (profissao != null) {
@@ -694,11 +771,27 @@ public class Sims {
 
     }
 
+    /**
+     * Consultar as propriedades do jogador
+     *
+     * @param jogador
+     */
     public static void visitarPropriedades(Jogador jogador) {
         jogador.exibirPropriedadesJogador();
 
     }
 
+    /**
+     * Procurar nova profissão: lista as profissões disponíveis,
+     * e de acordo com dois fatores o jogador será aceite ou não num emprego
+     * Se contém, pelo menos, um acessório de moda formal
+     * no caso de o emprego ter o atributo formal a true
+     * Se contém o estatuto no nível mínimo de entrada no emprego.
+     * Se contém a educação no nível mínimo de entrada no emprego
+     *
+     * @param pessoa
+     * @param centroEmprego
+     */
     public void procuraProfissao(Jogador pessoa, CentroEmprego centroEmprego) {
         //listar profissoes didponiveis
         centroEmprego.imprimirListaDeProfissoes();
@@ -725,8 +818,13 @@ public class Sims {
 
     }
 
-    //necessidade sono diminui 25 pontos, a necessidade refeição diminui 20
-    //pontos e a necessidade social diminui 15 pontos
+    /**
+     * Necessidade sono diminui 25 pontos, a necessidade refeição diminui
+     * 20 pontos e a necessidade social diminui 15 pontos
+     *
+     * @param pessoa
+     */
+
     public void necessidadesFimCiclo(Jogador pessoa) {
         pessoa.setNecessidadeSono(pessoa.getNecessidadeSono() - 25);
         pessoa.setNecessidadeRefeicao(pessoa.getNecessidadeRefeicao() - 20);
@@ -734,8 +832,13 @@ public class Sims {
     }
 
 
-    // ir para a universidade, caso sim, a educação aumenta 50, mas contrai uma
-    //divida de 3.000 dinheiros.
+    /**
+     * Ir para a universidade, caso sim, a educação aumenta 50, mas contrai uma
+     * divida de 3.000 dinheiros
+     *
+     * @param pessoa
+     */
+
     public void universidade(Jogador pessoa) {
         Scanner input = new Scanner(System.in);
         System.out.println("\t🧑🏽‍🎓Deseja ir a universidade?");
@@ -758,6 +861,16 @@ public class Sims {
 
     }
 
+    /**
+     * Escolher se quer casar, caso sim, pergunta com quem listando todos os NPCs no jogo. O
+     * jogador pode selecionar qualquer um, desde que tenha uma propriedade que albergue 2 ou mais
+     * pessoas. E terá também de ter o estatuto mínimo para casar com determinado NPC.
+     * Se conseguir casar aumenta ao dinheiro do jogador o dinheiro que esse NPC tem
+     *
+     * @param pessoa
+     * @param casamento
+     * @return
+     */
     public boolean casar(Jogador pessoa, Casamento casamento) {
 
         NPC npcEscolhido = null;
@@ -809,10 +922,19 @@ public class Sims {
     }
 
 
+    /**
+     * Ter/adotar filhos, que de acordo com um fator aleatório permite
+     * acrescentar um NPC aleatório sem dinheiro ou
+     * estatutoMinimo ao Array da família
+     * Verifica se a propriedade com maior capacidade permitavalbergar a nova Pessoa
+     *
+     * @param pessoa
+     * @param casamento
+     */
     public void terFilho(Jogador pessoa, Casamento casamento) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Deseja ter um filho? 👨‍👩‍👧‍👦👶🏽 S/N");
+        System.out.println("👨‍👩‍👧‍👦👶🏽Deseja ter/adotar um filho? S/N");
         String resposta = scanner.next();
         String resposta2;
 
@@ -829,7 +951,7 @@ public class Sims {
 
                 System.out.println("👶🏽🍼Teve um filho/a: " + npcFilho.getNome());
 
-                System.out.println("Deseja ter mais um filho? S/N");
+                System.out.println("👨‍👩‍👧‍👦👶🏽Deseja ter/adotar mais um filho? S/N");
                 resposta2 = scanner.next();
 
             } while (resposta2.equalsIgnoreCase("S"));
@@ -842,6 +964,12 @@ public class Sims {
 
     }
 
+    /**
+     * A SS retira todos os filhos se o jogador tiver
+     * oo dinheiro abaixo de -3250
+     *
+     * @param pessoa
+     */
     public void retirarFilhos(Jogador pessoa) {
         if (pessoa.getDinheiro() <= -3250) {
             pessoa.removerFilhos();
@@ -850,20 +978,28 @@ public class Sims {
         }
     }
 
+
     //mais eventos
+
+    /**
+     * Jogar euromilhões permite ao jogador escolher um numero
+     * Se este coincider com um aleatório entre 10 e 100 gnaha 1000 dinheiros
+     *
+     * @param pessoa
+     */
     public void jogarEuroDinheiro(Jogador pessoa) {
         Random random = new Random();
         int numeroAleatorio = random.nextInt(91) + 10; // número aleatório entre 10 e 100
 
-
         // Pedir ao jogador para escolher um número
         Scanner scanner = new Scanner(System.in);
         System.out.println();
+
         System.out.println("Vamos jogar ao euro dinheiro 💵🤑🤑💸\n");
-        System.out.println("🔢Escolha um número:");
+        System.out.println("🔢Escolha um número (10 - 100):");
         int escolha = scanner.nextInt();
-        // Verificar se a escolha é um número par entre 10 e 100
-        if (escolha % 2 == 0 && escolha >= 10 && escolha <= 100) {
+        // Verificar se a escolha é um número aleatorio 10 e 100
+        if (escolha == numeroAleatorio) {
             System.out.println("🥳🥳Parabéns! Ganhou 1000 dinheiros!");
             pessoa.setDinheiro(pessoa.getDinheiro() + 1000);
         } else {
@@ -872,49 +1008,68 @@ public class Sims {
         }
     }
 
+    /**
+     * Viajar permite ao jogador escolher um lugar para viajar
+     * De acordo com a escolha retir dinheiro e adiciona pontos a necessidade social
+     *
+     * @param pessoa
+     */
     public void viajar(Jogador pessoa) {
         int opcao;
 
-        do {
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Escolhar um destino pra sua viajem:");
-            System.out.println("1.Cabo Verde ");
-            System.out.println("2.França");
-            System.out.println("3.Brasil");
-            System.out.println("4.Não quero viajar!");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escolhar um destino pra sua viajem:");
+        System.out.println("1.Cabo Verde ");
+        System.out.println("2.França");
+        System.out.println("3.Brasil");
+        System.out.println("4.Não quero viajar!");
 
-            opcao = scanner.nextInt();
+        opcao = scanner.nextInt();
 
+        switch (opcao) {
+            case 1:
+                pessoa.setDinheiro(pessoa.getDinheiro() - 1000);
+                pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 20);
+                System.out.println("✈️🌎Que sua viagem seja repleta de momentos memoráveis e experiências enriquecedoras! " +
+                        "Aproveite cada instante e traga consigo lembranças que aqueçam o coração. " +
+                        "Boa viagem curta!");
+                break;
 
-            switch (opcao) {
-                case 1:
-                    pessoa.setDinheiro(pessoa.getDinheiro() - 1000);
-                    pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 20);
-                    break;
+            case 2:
+                pessoa.setDinheiro(pessoa.getDinheiro() - 100);
+                pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 10);
+                System.out.println("✈️🌎Que sua viagem seja repleta de momentos memoráveis e experiências enriquecedoras! " +
+                        "Aproveite cada instante e traga consigo lembranças que aqueçam o coração. " +
+                        "Boa viagem curta!");
+                break;
 
-                case 2:
-                    pessoa.setDinheiro(pessoa.getDinheiro() - 100);
-                    pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 10);
-                    break;
+            case 3:
+                pessoa.setDinheiro(pessoa.getDinheiro() - 2000);
+                pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 15);
+                System.out.println("✈️🌎Que sua viagem seja repleta de momentos memoráveis e experiências enriquecedoras! " +
+                        "Aproveite cada instante e traga consigo lembranças que aqueçam o coração. " +
+                        "Boa viagem curta!");
+                break;
 
-                case 3:
-                    pessoa.setDinheiro(pessoa.getDinheiro() - 2000);
-                    pessoa.setNecessidadeSocial(pessoa.getNecessidadeSocial() + 15);
-                    break;
+            case 4:
+                System.out.println("Às vezes, ficar em casa é a melhor viagem. " +
+                        "\nAproveite este tempo para relaxar, explorar o local e encontrar felicidade " +
+                        "em pequenas coisas. ");
+                break;
+            default:
+                System.out.println("Escolha uma opção entre 1 - 4");
 
-                case 4:
-                    System.out.println("Às vezes, ficar em casa é a melhor viagem. " +
-                            "\nAproveite este tempo para relaxar, explorar o local e encontrar felicidade " +
-                            "em pequenas coisas. ");
-                    break;
-                default:
-                    System.out.println("Escolha uma opção entre 1 - 3");
+        }
 
-            }
-        } while (opcao != 4);
     }
 
+    /**
+     * Permite ao jogador se quer sair á noite
+     * De acordo com a escollha modifica a necessidade de sono
+     *
+     * @param pessoa
+     */
     public void sairAnoite(Jogador pessoa) {
         Scanner scanner = new Scanner(System.in);
         int opcao;
@@ -942,6 +1097,13 @@ public class Sims {
     }
 
 
+    /**
+     * Permite ao jogador se quer fazer um part-time ao final de semana
+     * Se sim , adiciona 500 dinheiros, e retira 10 de sono
+     * Se não retira 10 pomtos de necessidade social
+     *
+     * @param pessoa
+     */
     public void partTimeFimDeSemana(Jogador pessoa) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Deseja fazer um part time no próximo fim de semana? S/N");
@@ -964,6 +1126,15 @@ public class Sims {
 
     }
 
+    /**
+     * Permite ao jogador ir ao cinema ou ver um filme em casa
+     * Se for em casa retira 10 pontos da necessidade social
+     * No cinema, retira 50 dinheiros e adiciona 10 pontos a necesidade social
+     * Permite comer pipoca, se sim reyira 5 dinheiros e aumenta 0 a necessidade de refeição
+     * Se não, retira 10 pontos a necessiddae de refeição
+     *
+     * @param pessoa
+     */
     public void irCinema(Jogador pessoa) {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
@@ -986,7 +1157,7 @@ public class Sims {
                 pessoa.setDinheiro(pessoa.getDinheiro() - 5);
                 pessoa.setNecessidadeRefeicao(pessoa.getNecessidadeRefeicao() + 10);
                 System.out.println("🍿🍿🍿Cinema, pipoca e diversão garantida. Aproveite o espetáculo!");
-            } else if (resposta.equalsIgnoreCase("S")) {
+            } else if (resposta.equalsIgnoreCase("N")) {
                 System.out.println("Sem pipoca? Sem problema! Aproveite o filme do seu jeito.");
                 pessoa.setNecessidadeRefeicao(pessoa.getNecessidadeRefeicao() - 10);
             } else {
@@ -1004,6 +1175,13 @@ public class Sims {
         }
     }
 
+    /**
+     * Jantar fora permite ao jogador escolher se quer ou não jantar fora
+     * Se sim, retira 200 dinheiros e adiciona 10 a necessidade de refeição
+     * Se não, janta em casa e ganha 5 pontos de necessidade de refeição
+     *
+     * @param pessoa
+     */
     public void jantarFora(Jogador pessoa) {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
@@ -1026,13 +1204,20 @@ public class Sims {
 
     }
 
+    /**
+     * Aprender Java permite ao jogador escolher se quer aprender a programar em Java
+     * Se sim, ganha 1000 dinheiros e perde 10 de necessidade social
+     * Se não, ganha 10 de necessidade social
+     *
+     * @param jogador
+     */
     public void aprenderJava(Jogador jogador) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Que tal aprender a progrmar em Java S/N? 👨🏽‍💻");
+        System.out.println("Que tal aprender a programar em Java S/N? 👨🏽‍💻");
         String resposta = input.next();
 
         if (resposta.equalsIgnoreCase("S")) {
-            jogador.setDinheiro(jogador.getDinheiro() + 100);
+            jogador.setDinheiro(jogador.getDinheiro() + 1000);
             jogador.setNecessidadeSocial(jogador.getNecessidadeSocial() - 10);
             System.out.println("Boa sorte! 🤣🤣🤣🤣");
             System.out.println();
@@ -1045,7 +1230,13 @@ public class Sims {
         }
     }
 
-
+    /**
+     * Verifica se jogador ganhou de acordo com cada objetivo de vida
+     * Se ganhar retorna true, se não, false
+     *
+     * @param jogador
+     * @return
+     */
     public boolean atingiuObjetivos(Jogador jogador) {
         double valorPropriedades = jogador.valorDeTodosAsPropriedades();
         double dinheiroJogador = jogador.getDinheiro();

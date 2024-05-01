@@ -5,23 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b211273a-7dbd-458a-a892-c9a900ac20c7" name="Changes" comment="Momentos">
-      <change afterPath="$PROJECT_DIR$/src/Files/audio.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OutrasClasses/Audio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Personagens/Casamento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Bens/AcessorioModa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bens/AcessorioModa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Bens/Imovel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bens/Imovel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Bens/Propriedade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bens/Propriedade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Bens/Veiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bens/Veiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enums/Objetivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enums/Objetivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jogo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OutrasClasses/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/Audio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OutrasClasses/CentroEmprego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/CentroEmprego.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OutrasClasses/Profissao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/Profissao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OutrasClasses/Shopping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/Shopping.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OutrasClasses/Sims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OutrasClasses/Sims.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Personagens/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personagens/Jogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Personagens/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personagens/NPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +128,9 @@
       <workItem from="1714056991395" duration="17573000" />
       <workItem from="1714132038454" duration="19010000" />
       <workItem from="1714224440582" duration="19929000" />
-      <workItem from="1714307982086" duration="1796000" />
+      <workItem from="1714307982086" duration="2452000" />
+      <workItem from="1714515106139" duration="4095000" />
+      <workItem from="1714519239078" duration="1944000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -176,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713794496802</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Momentos">
+      <option name="closed" value="true" />
+      <created>1714331552431</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714331552431</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
