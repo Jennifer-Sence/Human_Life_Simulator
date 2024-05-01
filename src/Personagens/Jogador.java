@@ -48,69 +48,143 @@ public class Jogador extends Pessoa {
     }
 
 
-    //getters-----------------------------------------------------
+    /**
+     * Método get para necesidade de sono
+     *
+     * @return necessidade sono
+     */
 
     public int getNecessidadeSono() {
         return necessidadeSono;
     }
 
+    /**
+     * Método get para necesidade de refeição
+     *
+     * @return necessidade refeição
+     */
     public int getNecessidadeRefeicao() {
         return necessidadeRefeicao;
     }
 
+    /**
+     * Método get para necesidade de social
+     *
+     * @return necesidade social
+     */
     public int getNecessidadeSocial() {
         return necessidadeSocial;
     }
 
+    /**
+     * Método get profissão atual do jogador
+     *
+     * @return profissão atual do jogador
+     */
     public Profissao getProfissaoAtual() {
         return profissaoAtual;
     }
 
+    /**
+     * Método get para educação
+     *
+     * @return educação
+     */
     public int getEducacao() {
         return educacao;
     }
+
+    /**
+     * Método get para estatuto
+     *
+     * @return estatuto
+     */
 
     public int getEstatuto() {
 
         return estatuto;
     }
 
-
+    /**
+     * Método get para objetivo
+     *
+     * @return objetivo
+     */
     public Objetivo getObjetivoVida() {
         return objetivoVida;
     }
 
+    /**
+     * Método get para familia
+     *
+     * @return familia
+     */
     public ArrayList<NPC> getFamilia() {
         return familia;
     }
 
+    /**
+     * Método get para propriedade do jogador
+     *
+     * @return propriedade do jogador
+     */
+    public ArrayList<Propriedade> getPropriedades() {
+        return propriedades;
+    }
+
     //setters----------------------------------------------------------
+
+    /**
+     * Método set para educação
+     *
+     * @param educacao
+     */
     public void setEducacao(int educacao) {
         this.educacao = educacao;
     }
 
+    /**
+     * Método set para profissão atual
+     *
+     * @param profissaoAtual
+     */
     public void setProfissaoAtual(Profissao profissaoAtual) {
         this.profissaoAtual = profissaoAtual;
     }
 
+    /**
+     * Método set para necessidade sono
+     *
+     * @param necessidadeSono
+     */
     public void setNecessidadeSono(int necessidadeSono) {
         this.necessidadeSono = necessidadeSono;
     }
 
+    /**
+     * Método set para necessidade refeição
+     *
+     * @param necessidadeRefeicao
+     */
     public void setNecessidadeRefeicao(int necessidadeRefeicao) {
         this.necessidadeRefeicao = necessidadeRefeicao;
     }
 
+    /**
+     * Método set para necessidade social
+     *
+     * @param necessidadeSocial
+     */
     public void setNecessidadeSocial(int necessidadeSocial) {
         this.necessidadeSocial = necessidadeSocial;
     }
 
-    public void setFamilia(ArrayList<NPC> familia) {
-        this.familia = familia;
-    }
 
     /**
      * Método para exibir todos detalhes da classe Jogador
+     * Nome, dinheiro, objetivo de vida, profissão atual
+     * Necessidade de sono, de refeição, social, estatuto educação
+     * Propriedades e familia
      */
     public void mostrarDetalhes() {
         super.mostrarDetalhes();
@@ -118,22 +192,25 @@ public class Jogador extends Pessoa {
         System.out.println("🧑🏽‍⚕️ Profissão atual: " + this.profissaoAtual.getNome());
         System.out.println("💤 Necessidade de sono: " + this.necessidadeSono);
         System.out.println("🍱 Necessidade de refeição: " + this.necessidadeRefeicao);
-        System.out.println("🫂 Necessidade Social: " + this.necessidadeSocial);
+        System.out.println("🫂 Necessidade social: " + this.necessidadeSocial);
         System.out.println("🏠 Estatuto: " + this.estatuto);
         System.out.println("📝 Educação: " + this.educacao);
         System.out.println();
         System.out.println("-------------------Bens Adquiridos---------------------------- \n ");
         exibirPropriedadesJogador();
         System.out.println("\n---------------------Familia--------------------------  ");
-        exibirFamiliaJogador();
+        if (this.familia != null) {
+            exibirFamiliaJogador();
+        } else {
+            System.out.println("Não tem nenhum familiar 😿💔");
+        }
 
     }
 
-    public ArrayList<Propriedade> getPropriedades() {
-        return propriedades;
-    }
 
-
+    /**
+     * Exibir propriedades do jogador
+     */
     public void exibirPropriedadesJogador() {
         int contador = 1;
         if (propriedades.size() == 0) {
@@ -148,6 +225,12 @@ public class Jogador extends Pessoa {
         }
     }
 
+    /**
+     * Verifica se jogador tem acessório formal
+     *
+     * @return true ou false
+     */
+
     public boolean temAcessorioFormal() {
         for (Propriedade propriedadeAtual : propriedades) {
             if (propriedadeAtual instanceof AcessorioModa) {
@@ -159,6 +242,9 @@ public class Jogador extends Pessoa {
         return false;
     }
 
+    /**
+     * Exibir familiares do jogador
+     */
     public void exibirFamiliaJogador() {
         int contador = 1;
 
@@ -169,6 +255,13 @@ public class Jogador extends Pessoa {
         }
     }
 
+    /**
+     * Verifica se jogador tem dinheiro suficiente para
+     * adquirir uma nova propriedade
+     *
+     * @param propriedade
+     * @return true ou false, se adquiriu ou não uma propriedade
+     */
     public boolean adquiriuPropriedade(Propriedade propriedade) {
         if (this.dinheiro >= propriedade.getCusto()) {
             propriedades.add(propriedade);
@@ -185,6 +278,11 @@ public class Jogador extends Pessoa {
         }
     }
 
+    /**
+     * Verifica se o jogador tem uma propriedade com capacidade para 2 ou mais pessoa
+     *
+     * @return true ou false, se tiver ou não
+     */
     public boolean capacidadePropriedadeJogadorMaiorQueDois() {
         for (Propriedade propAtual : propriedades) {
             if (propAtual instanceof Imovel) {
@@ -198,21 +296,40 @@ public class Jogador extends Pessoa {
         return false;
     }
 
+    /**
+     * Adiciona um familiar ao array da familia do jogador
+     *
+     * @param npc
+     */
     public void adicionarFamiliar(NPC npc) {
         familia.add(npc);
     }
 
+    /**
+     * Remover um npc filho da familia do jogador
+     */
     public void removerFilhos() {
         for (int i = 1; i < familia.size(); i++) {
             familia.remove(i);
         }
     }
 
+    /**
+     * Verifica qual a quantidade de familia que tem o jogador
+     *
+     * @return quantidade de familiares
+     */
     public int quantidadeFamilia() {
         int quantidade = this.familia.size();
         return quantidade;
     }
 
+
+    /**
+     * Verifica qual a propriedade do jogador com maior capacidade
+     *
+     * @return valor da maior capacidade
+     */
     public int propriedadeComMaiorCapacidade() {
         int maiorCapacidade = 0;
         for (Propriedade propAtual : propriedades) {
@@ -225,10 +342,17 @@ public class Jogador extends Pessoa {
         return maiorCapacidade;
     }
 
+    /**
+     * Pagar 10 dinheiros por cda familiar
+     */
     public void pagarPorFamiliar() {
-        this.dinheiro = this.dinheiro - (10 * familia.size()) ;
+        this.dinheiro = this.dinheiro - (10 * familia.size());
     }
 
+    /**
+     * Calcula o valor total de todas as propriedades do jogador
+     * @return valor total
+     */
     public double valorDeTodosAsPropriedades() {
         double valorTotal = 0;
         for (Propriedade propAtual : propriedades) {
@@ -237,6 +361,10 @@ public class Jogador extends Pessoa {
         return valorTotal;
     }
 
+    /**
+     * Adiciona um filho ao array da familia do jogador
+     * @return
+     */
     public ArrayList<NPC> getFilhos() {
         ArrayList<NPC> filhos = new ArrayList<>();
 
@@ -250,6 +378,9 @@ public class Jogador extends Pessoa {
 
     }
 
+    /**
+     * Resetar o jogador no caso de jogar com o mesmo jogador
+     */
     public void resetar() {
         this.dinheiro = 0;
         this.profissaoAtual = null;
