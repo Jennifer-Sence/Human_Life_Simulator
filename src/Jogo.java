@@ -1,8 +1,6 @@
 import OutrasClasses.Sims;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 import OutrasClasses.Audio;
 
@@ -18,7 +16,7 @@ public class Jogo {
 
         sims.imprimirFicheiro("src/Files/sims4.txt");
 
-        sims.jogo(100, null);
+        sims.jogo(1, null);
 
     }
 }

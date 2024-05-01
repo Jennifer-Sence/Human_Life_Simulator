@@ -129,7 +129,6 @@ public class Sims {
         System.out.println("🧬Objetivo de vida: " + objetivoVida);
         System.out.println();
 
-
         return jogador;
 
 
@@ -142,7 +141,7 @@ public class Sims {
      * @param dias            número de dias em que o jogo corre
      * @param jogadorAnterior jogador, podendo ser um novo a ser criado
      *                        ou um da jogada anterior
-     * @throws FileNotFoundException caso o fivheiro não seja encontrado
+     * @throws FileNotFoundException caso o ficheiro não seja encontrado
      */
     public void jogo(int dias, Jogador jogadorAnterior) throws FileNotFoundException {
 
@@ -459,7 +458,7 @@ public class Sims {
             if (diaAtual > 22 && jogador.getFamilia().size() > 0 && diaAtual <= 60) {
                 terFilho(jogador, casamento);
             }
-            if (diaAtual == 1) {
+            if (diaAtual == 8) {
                 viajar(jogador);
             }
 
@@ -525,14 +524,16 @@ public class Sims {
         // ou jogar novamente com o mesmo personagem
         if (atingiuObjetivos(jogador)) {
             System.out.println("🥳🥳🥳Parabéns atingiu todo o seu objetivo de vida e ganhou o jogo!");
+            System.out.println();
             imprimirFicheiro("src/Files/win.txt");
 
             //encerrar o programa
             System.exit(0);
         } else {
+            System.out.println();
             imprimirFicheiro("src/Files/lose.txt");
-
-            System.out.println("Quer continuar com o jogador? S/N ");
+            System.out.println();
+            System.out.println("Quer continuar com o jogador e mesmo objetivo de vida? S/N ");
             String resposta = input.next();
             //se sim, chamar o metodo jogo e passar o jogador antigo com o mesmo nome e
             // o mesmo objetivo de vida da jogada anterior
@@ -721,7 +722,6 @@ public class Sims {
         pessoa.setNecessidadeRefeicao(100);
         System.out.println("Necessidade de refeição reposta 😎");
         System.out.println();
-        System.out.println("💵💵Dinheiro atual: " + pessoa.getDinheiro());
 
     }
 
@@ -849,6 +849,10 @@ public class Sims {
         if (resposta == 1) {
             pessoa.setEducacao((pessoa.getEducacao()) + 50);
             pessoa.setDinheiro(pessoa.getDinheiro() - 3000);
+            System.out.println();
+            System.out.println("Parabéns pela decisão de investir em seu futuro acadêmico! " +
+                    "\nA jornada universitária será desafiadora, mas também repleta de oportunidades e crescimento pessoal." +
+                    "\nEsteja aberto para aprender, explorar e aproveitar ao máximo cada experiência que a universidade oferece. "  );
         } else if (resposta == 2) {
 
             System.out.println("Optar por não ir à universidade é uma escolha legítima. " +
@@ -965,8 +969,7 @@ public class Sims {
     }
 
     /**
-     * A SS retira todos os filhos se o jogador tiver
-     * oo dinheiro abaixo de -3250
+     * A SS retira todos os filhos se o jogador tiver dinheiro abaixo de -3250
      *
      * @param pessoa
      */
@@ -1185,7 +1188,7 @@ public class Sims {
     public void jantarFora(Jogador pessoa) {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        System.out.println("------------------Jantar Fora---------------------");
+        System.out.println();
         System.out.println("🍽️Gostaria de aproveitar o jantar no conforto de casa ou " +
                 "preferiria sair para um jantar fora esta noite 'S/N' ");
         String resposta = scanner.next();
@@ -1238,11 +1241,14 @@ public class Sims {
      * @return
      */
     public boolean atingiuObjetivos(Jogador jogador) {
+
+        System.out.println();
+        jogador.mostrarDetalhes();
+        System.out.println();
         double valorPropriedades = jogador.valorDeTodosAsPropriedades();
         double dinheiroJogador = jogador.getDinheiro();
         double quantidadeFinal = valorPropriedades + dinheiroJogador;
 
-        System.out.println("Valor total do seu dinheiro: " + jogador.getDinheiro() + " 💵💵💵");
         if (jogador.getObjetivoVida().equals(Objetivo.MILIONARIO)) {
             //deve ter a soma o valor das suas propriedades
             if (quantidadeFinal > 160000) {
@@ -1257,25 +1263,25 @@ public class Sims {
         }
 
         if (jogador.getObjetivoVida().equals(Objetivo.CELEBRIDADE)) {
-            if (jogador.getEstatuto() > 2000) {
+            if (jogador.getEstatuto() > 2000 && quantidadeFinal > 150000) {
                 return true;
             }
         }
 
         if (jogador.getObjetivoVida().equals(Objetivo.PROFESSOR)) {
-            if (jogador.getEducacao() > 100 && jogador.getProfissaoAtual().getNome().equals("Professor")) {
+            if (jogador.getEducacao() > 400 && jogador.getProfissaoAtual().getNome().equals("Professor")) {
                 return true;
             }
         }
 
         if (jogador.getObjetivoVida().equals(Objetivo.MEDICO)) {
-            if (jogador.getEducacao() > 200 && jogador.getProfissaoAtual().getNome().equals("Médico")) {
+            if (jogador.getEducacao() > 500 && jogador.getProfissaoAtual().getNome().equals("Médico")) {
                 return true;
             }
         }
 
         if (jogador.getObjetivoVida().equals(Objetivo.VIAJAR_O_MUNDO)) {
-            if (jogador.quantidadeFamilia() < 4 && jogador.getProfissaoAtual().getNome().equals("Piloto")) {
+            if (jogador.quantidadeFamilia() < 4 && jogador.getProfissaoAtual().getNome().equals("Piloto") && jogador.getEstatuto() > 1000) {
                 return true;
             }
         }
@@ -1289,13 +1295,14 @@ public class Sims {
 
 
         if (jogador.getObjetivoVida().equals(Objetivo.JOGADOR)) {
-            if (jogador.getNecessidadeSocial() > 3 && jogador.getProfissaoAtual().getNome().equals("Atleta")) {
+            if (jogador.getNecessidadeSocial() > 50 && jogador.getProfissaoAtual().getNome().equals("Atleta")) {
                 return true;
             }
+
         }
 
         if (jogador.getObjetivoVida().equals(Objetivo.CANTOR)) {
-            if (jogador.getEstatuto() > 1000) {
+            if (jogador.getEstatuto() > 1000 && jogador.getProfissaoAtual().getNome().equals("Cantor")) {
                 return true;
             }
         }

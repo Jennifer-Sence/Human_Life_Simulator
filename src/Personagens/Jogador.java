@@ -196,14 +196,10 @@ public class Jogador extends Pessoa {
         System.out.println("🏠 Estatuto: " + this.estatuto);
         System.out.println("📝 Educação: " + this.educacao);
         System.out.println();
-        System.out.println("-------------------Bens Adquiridos---------------------------- \n ");
+        System.out.println("\n -------------------Bens Adquiridos---------------------------- \n ");
         exibirPropriedadesJogador();
-        System.out.println("\n---------------------Familia--------------------------  ");
-        if (this.familia != null) {
-            exibirFamiliaJogador();
-        } else {
-            System.out.println("Não tem nenhum familiar 😿💔");
-        }
+        System.out.println("\n -----------------------Família-------------------------------- \n   ");
+        exibirFamiliaJogador();
 
     }
 
@@ -214,7 +210,7 @@ public class Jogador extends Pessoa {
     public void exibirPropriedadesJogador() {
         int contador = 1;
         if (propriedades.size() == 0) {
-            System.out.println("Não possui ainda nenhuma propriedade!");
+            System.out.println("⚠️⚠️⚠️Não possui nenhuma propriedade!");
         } else {
             for (Propriedade propiedadeAtual : this.propriedades) {
 
@@ -247,11 +243,14 @@ public class Jogador extends Pessoa {
      */
     public void exibirFamiliaJogador() {
         int contador = 1;
-
-        for (NPC npcAtual : this.familia) {
-            System.out.print("👨🏿‍👩🏽‍👧🏾‍👦🏿  Familia " + contador++ + ": ");
-            npcAtual.mostrarDetalhes();
-            System.out.println();
+        if (this.familia.size() > 0) {
+            for (NPC npcAtual : this.familia) {
+                System.out.print("👨🏿‍👩🏽‍👧🏾‍👦🏿  Familia " + contador++ + ": ");
+                npcAtual.mostrarDetalhes();
+                System.out.println();
+            }
+        }else {
+            System.out.println("Não tem nenhum familiar 😿💔");
         }
     }
 
@@ -351,6 +350,7 @@ public class Jogador extends Pessoa {
 
     /**
      * Calcula o valor total de todas as propriedades do jogador
+     *
      * @return valor total
      */
     public double valorDeTodosAsPropriedades() {
@@ -363,6 +363,7 @@ public class Jogador extends Pessoa {
 
     /**
      * Adiciona um filho ao array da familia do jogador
+     *
      * @return
      */
     public ArrayList<NPC> getFilhos() {
